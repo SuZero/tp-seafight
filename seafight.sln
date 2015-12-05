@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seafight", "seafight\seafight\seafight.csproj", "{F2A44C0C-D1CD-479D-946A-5B358D8F3FB3}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "seafightContent", "seafight\seafightContent\seafightContent.contentproj", "{3FCB5DF1-A1B2-4834-8735-B03624824BE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2A44C0C-D1CD-479D-946A-5B358D8F3FB3}.Debug|x86.ActiveCfg = Debug|x86
+		{F2A44C0C-D1CD-479D-946A-5B358D8F3FB3}.Debug|x86.Build.0 = Debug|x86
+		{F2A44C0C-D1CD-479D-946A-5B358D8F3FB3}.Release|x86.ActiveCfg = Release|x86
+		{F2A44C0C-D1CD-479D-946A-5B358D8F3FB3}.Release|x86.Build.0 = Release|x86
+		{3FCB5DF1-A1B2-4834-8735-B03624824BE1}.Debug|x86.ActiveCfg = Debug|x86
+		{3FCB5DF1-A1B2-4834-8735-B03624824BE1}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

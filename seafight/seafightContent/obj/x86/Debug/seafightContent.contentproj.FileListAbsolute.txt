@@ -1,0 +1,2 @@
+L:\seafight\seafight\seafight\seafightContent\obj\x86\Debug\seafightContent.contentprojResolveAssemblyReference.cache
+L:\seafight\seafight\tp-seafight\seafight\seafightContent\obj\x86\Debug\seafightContent.contentprojResolveAssemblyReference.cache
