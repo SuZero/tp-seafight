@@ -88,6 +88,37 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <ProjectReference Include="..\..\AI\AI.csproj">
+      <Project>{65f36ad3-5913-459b-901b-fd216d15d729}</Project>
+      <Name>AI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseObject\BaseObject.csproj">
+      <Project>{1d2510b8-2cb9-462b-8f88-f0018701d561}</Project>
+      <Name>BaseObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BattleField\BattleField.csproj">
+      <Project>{10e4d1f6-cdeb-4855-9bce-91663ebb9e4d}</Project>
+      <Name>BattleField</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Control\Control.csproj">
+      <Project>{4765c0a7-566e-4279-9041-3e3440a4a3b7}</Project>
+      <Name>Control</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FileSystem\FileSystem.csproj">
+      <Project>{d39b3679-dbc4-4469-9276-a13e0df4610e}</Project>
+      <Name>FileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Multiplayer\Multiplayer.csproj">
+      <Project>{1efd0990-8bbb-496b-b3c3-de0cd4d52dc5}</Project>
+      <Name>Multiplayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Visualization\Visualization.csproj">
+      <Project>{5ac1541f-00b5-46b7-b635-15e495bcf626}</Project>
+      <Name>Visualization</Name>
+    </ProjectReference>
+>>>>>>> origin/master
     <ProjectReference Include="..\seafightContent\seafightContent.contentproj">
       <Name>seafightContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>
