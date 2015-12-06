@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\GameThumbnail.xnb</Output>
-      <Time>2015-12-07T02:20:02.8631325+09:00</Time>
+      <Time>2015-12-06T22:10:01.7591185+09:00</Time>
     </Item>
     <Item>
       <Source>ball.jpg</Source>
@@ -17,16 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\ball.xnb</Output>
-      <Time>2015-12-07T02:20:02.8641326+09:00</Time>
-    </Item>
-    <Item>
-      <Source>start.jpg</Source>
-      <Name>start</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\start.xnb</Output>
-      <Time>2015-12-07T02:20:02.8701329+09:00</Time>
+      <Time>2015-12-06T22:33:37.4370906+09:00</Time>
     </Item>
     <Item>
       <Source>loading.jpg</Source>
@@ -35,16 +26,52 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\loading.xnb</Output>
-      <Time>2015-12-07T02:20:02.8681328+09:00</Time>
+      <Time>2015-12-06T22:33:37.4380907+09:00</Time>
     </Item>
     <Item>
-      <Source>exit.jpg</Source>
+      <Source>startscreen.jpg</Source>
+      <Name>startscreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\startscreen.xnb</Output>
+      <Time>2015-12-07T01:57:42.0674434+09:00</Time>
+    </Item>
+    <Item>
+      <Source>start.png</Source>
+      <Name>start</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\start.xnb</Output>
+      <Time>2015-12-07T01:57:42.0554427+09:00</Time>
+    </Item>
+    <Item>
+      <Source>load.png</Source>
+      <Name>load</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\load.xnb</Output>
+      <Time>2015-12-07T01:57:42.0464422+09:00</Time>
+    </Item>
+    <Item>
+      <Source>settings.png</Source>
+      <Name>settings</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\settings.xnb</Output>
+      <Time>2015-12-07T01:57:42.0544427+09:00</Time>
+    </Item>
+    <Item>
+      <Source>exit.png</Source>
       <Name>exit</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\exit.xnb</Output>
-      <Time>2015-12-07T02:20:02.8671328+09:00</Time>
+      <Time>2015-12-07T01:57:42.0464422+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

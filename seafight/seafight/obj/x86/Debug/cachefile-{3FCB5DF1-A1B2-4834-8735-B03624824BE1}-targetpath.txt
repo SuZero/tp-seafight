@@ -1,5 +1,8 @@
 Content\GameThumbnail.xnb
 Content\ball.xnb
-Content\start.xnb
 Content\loading.xnb
+Content\startscreen.xnb
+Content\start.xnb
+Content\load.xnb
+Content\settings.xnb
 Content\exit.xnb
