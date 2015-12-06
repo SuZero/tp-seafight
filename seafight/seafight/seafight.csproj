@@ -75,11 +75,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gameboard.cs" />
-    <Compile Include="IPlayerView.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="GameView.cs" />
+    <Compile Include="Player\IPlayer.cs" />
+    <Compile Include="Player\IPlayerView.cs" />
+    <Compile Include="Player\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="ShotFeedback.cs" />
+    <Compile Include="TurnEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
@@ -99,10 +103,6 @@
     <ProjectReference Include="..\..\BattleField\BattleField.csproj">
       <Project>{10e4d1f6-cdeb-4855-9bce-91663ebb9e4d}</Project>
       <Name>BattleField</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Control\Control.csproj">
-      <Project>{4765c0a7-566e-4279-9041-3e3440a4a3b7}</Project>
-      <Name>Control</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\FileSystem\FileSystem.csproj">
       <Project>{d39b3679-dbc4-4469-9276-a13e0df4610e}</Project>
@@ -143,9 +143,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Player\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

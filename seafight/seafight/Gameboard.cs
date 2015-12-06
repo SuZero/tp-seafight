@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Control;
 using seafight;
 
 namespace BattleField
@@ -33,22 +34,19 @@ namespace BattleField
             _playerShips.Add(Player.Two, new List<Placement>(shipSizes.Length));
         }
 
-        internal IPlayerView GetPlayerView(Player whosTurn)
-        {
-            return new GameView(this, whosTurn);
-        }
+        internal IPlayerView GetPlayerView(Player whosTurn) => new GameView(this, whosTurn);
 
         internal ShotFeedback FireShot(Player whosTurn, Shot playerShot)
         {
             List<Placement> targetFleet = _playerShips[whosTurn == Player.One ? Player.Two : Player.One];
-            IShip ship;
+             Ship ship;
             int start, end, shot, segment;
             int hits = 0;
             int sunkShips = 0;
 
             foreach (Placement shipPlacement in targetFleet)
             {
-                ship = (IShip)shipPlacement.Vessel;
+                ship = (Ship)shipPlacement.Ship;
 
                 if (shipPlacement.Orientation == Orientation.Horizontal && shipPlacement.Y == playerShot.Y)
                 {
@@ -81,29 +79,29 @@ namespace BattleField
             return new ShotFeedback(hits, sunkShips);
         }
 
-        internal ICollection<IVessel> CreateFlotilla()
+        internal List<IShip> CreateFlotilla()
         {
-            List<IVessel> flotilla = new List<IVessel>(5);
-            foreach (int ship in _shipSizes)
+            List<IShip> flotilla = new List<IShip>(5);
+            foreach (int ship in shipSizes)
             {
-                flotilla.Add(new Vessel(ship));
+                flotilla.Add(new Ship(ship));
             }
             return flotilla;
         }
         internal bool SetUpComplete()
         {
-            List<int> shipCheckList = new List<int>(_shipSizes.Length);
+            List<int> shipCheckList = new List<int>(shipSizes.Length);
 
             foreach (KeyValuePair<Player, List<Placement>> pair in _playerShips)
             {
-                if (pair.Value.Count != _shipSizes.Length)
+                if (pair.Value.Count != shipSizes.Length)
                     return false;
 
-                shipCheckList.AddRange(_shipSizes);
+                shipCheckList.AddRange(shipSizes);
 
                 foreach (Placement placedShip in pair.Value)
                 {
-                    shipCheckList.Remove(placedShip.Vessel.Length);
+                    shipCheckList.Remove(placedShip.Ship.Length);
                 }
 
                 if (shipCheckList.Count != 0)
@@ -120,7 +118,7 @@ namespace BattleField
                 shipCount = 0;
                 foreach (Placement placement in pair.Value)
                 {
-                    if (!((Vessel)placement.Vessel).IsSunk)
+                    if (!((Ship)placement.Ship).IsSunk)
                         shipCount++;
                 }
 
@@ -176,7 +174,7 @@ namespace BattleField
             endPoint = ShipEndPoint(placedShip);
             shipBottomRight = new Coordinate(endPoint.X + 1, endPoint.Y - 1);
 
-            for (int i = 0; i <= placement.Vessel.Length; i++)
+            for (int i = 0; i <= placement.Ship.Length; i++)
             {
                 if (placement.Orientation == Orientation.Horizontal)
                     tmpSegment = new Coordinate(placement.X + i, placement.Y);
@@ -193,9 +191,9 @@ namespace BattleField
         {
             Coordinate end;
             if (placement.Orientation == Orientation.Horizontal)
-                end = new Coordinate(placement.X + (placement.Vessel.Length - 1), placement.Y);
+                end = new Coordinate(placement.X + (placement.Ship.Length - 1), placement.Y);
             else //if (placement.Orientation == Orientation.Vertical)
-                end = new Coordinate(placement.X, placement.Y - (placement.Vessel.Length - 1));  // TODO: This should be changed.
+                end = new Coordinate(placement.X, placement.Y - (placement.Ship.Length - 1));  // TODO: This should be changed.
 
             return end;
         }
@@ -209,5 +207,4 @@ namespace BattleField
             return false;
         }
     }
-}
 }

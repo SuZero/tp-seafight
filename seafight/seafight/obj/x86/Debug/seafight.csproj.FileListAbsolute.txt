@@ -40,3 +40,15 @@ C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\obj\x86\Debug\seafigh
 C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\obj\x86\Debug\seafight.exe
 C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\obj\x86\Debug\seafight.pdb
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\AI.dll
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\BaseObject.dll
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\BattleField.dll
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\FileSystem.dll
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\Multiplayer.dll
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\Visualization.dll
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\AI.pdb
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\BaseObject.pdb
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\BattleField.pdb
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\FileSystem.pdb
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\Multiplayer.pdb
+C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafight\bin\x86\Debug\Visualization.pdb

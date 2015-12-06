@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seafight", "seafight\seafig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seafightContent", "seafight\seafightContent\seafightContent.contentproj", "{3FCB5DF1-A1B2-4834-8735-B03624824BE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Control", "Control\Control.csproj", "{4765C0A7-566E-4279-9041-3E3440A4A3B7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleField", "BattleField\BattleField.csproj", "{10E4D1F6-CDEB-4855-9BCE-91663EBB9E4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visualization", "Visualization\Visualization.csproj", "{5AC1541F-00B5-46B7-B635-15E495BCF626}"
@@ -33,10 +31,6 @@ Global
 		{F2A44C0C-D1CD-479D-946A-5B358D8F3FB3}.Release|x86.Build.0 = Release|x86
 		{3FCB5DF1-A1B2-4834-8735-B03624824BE1}.Debug|x86.ActiveCfg = Debug|x86
 		{3FCB5DF1-A1B2-4834-8735-B03624824BE1}.Release|x86.ActiveCfg = Release|x86
-		{4765C0A7-566E-4279-9041-3E3440A4A3B7}.Debug|x86.ActiveCfg = Debug|x86
-		{4765C0A7-566E-4279-9041-3E3440A4A3B7}.Debug|x86.Build.0 = Debug|x86
-		{4765C0A7-566E-4279-9041-3E3440A4A3B7}.Release|x86.ActiveCfg = Release|x86
-		{4765C0A7-566E-4279-9041-3E3440A4A3B7}.Release|x86.Build.0 = Release|x86
 		{10E4D1F6-CDEB-4855-9BCE-91663EBB9E4D}.Debug|x86.ActiveCfg = Debug|x86
 		{10E4D1F6-CDEB-4855-9BCE-91663EBB9E4D}.Debug|x86.Build.0 = Debug|x86
 		{10E4D1F6-CDEB-4855-9BCE-91663EBB9E4D}.Release|x86.ActiveCfg = Release|x86

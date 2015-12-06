@@ -10,8 +10,8 @@
 
         public ShotFeedback(int hits, int sunkShips)
         {
-            hits = hits;
-            sunkShips = sunkShips;
+            this.hits = hits;
+            this.sunkShips = sunkShips;
         }
     }
 }
