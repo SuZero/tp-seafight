@@ -1,3 +1,0 @@
-L:\seafight\seafight\seafight\seafightContent\obj\x86\Debug\seafightContent.contentprojResolveAssemblyReference.cache
-C:\Users\ы\Documents\GitHub\tp-seafight\seafight\seafightContent\obj\x86\Debug\seafightContent.contentprojResolveAssemblyReference.cache
-L:\seafight\seafight\tp-seafight\seafight\seafightContent\obj\x86\Debug\seafightContent.contentprojResolveAssemblyReference.cache
