@@ -11,3 +11,7 @@ L:\seafight\seafight\tp-seafight\seafight\seafight\obj\x86\Debug\Microsoft.Xna.F
 L:\seafight\seafight\tp-seafight\seafight\seafight\obj\x86\Debug\seafight.exe
 L:\seafight\seafight\tp-seafight\seafight\seafight\obj\x86\Debug\seafight.pdb
 L:\seafight\seafight\tp-seafight\seafight\seafight\bin\x86\Debug\Content\GameThumbnail.xnb
+L:\seafight\seafight\tp-seafight\seafight\seafight\bin\x86\Debug\Content\ball.xnb
+L:\seafight\seafight\tp-seafight\seafight\seafight\bin\x86\Debug\Content\start.xnb
+L:\seafight\seafight\tp-seafight\seafight\seafight\bin\x86\Debug\Content\loading.xnb
+L:\seafight\seafight\tp-seafight\seafight\seafight\bin\x86\Debug\Content\exit.xnb
