@@ -10,3 +10,4 @@ L:\seafight\seafight\tp-seafight\seafight\seafight\obj\x86\Debug\seafight.csproj
 L:\seafight\seafight\tp-seafight\seafight\seafight\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 L:\seafight\seafight\tp-seafight\seafight\seafight\obj\x86\Debug\seafight.exe
 L:\seafight\seafight\tp-seafight\seafight\seafight\obj\x86\Debug\seafight.pdb
+L:\seafight\seafight\tp-seafight\seafight\seafight\bin\x86\Debug\Content\GameThumbnail.xnb
