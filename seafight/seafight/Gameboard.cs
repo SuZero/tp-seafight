@@ -34,7 +34,10 @@ namespace BattleField
             _playerShips.Add(Player.Two, new List<Placement>(shipSizes.Length));
         }
 
-        internal IPlayerView GetPlayerView(Player whosTurn) => new GameView(this, whosTurn);
+        internal IPlayerView GetPlayerView(Player whosTurn)
+        {
+           return  new GameView(this, whosTurn);
+        }
 
         internal ShotFeedback FireShot(Player whosTurn, Shot playerShot)
         {

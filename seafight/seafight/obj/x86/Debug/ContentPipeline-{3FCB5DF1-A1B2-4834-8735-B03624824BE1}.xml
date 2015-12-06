@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>GameThumbnail.png</Source>
+      <Name>GameThumbnail</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\GameThumbnail.xnb</Output>
+      <Time>2015-12-07T02:20:02.8631325+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ball.jpg</Source>
+      <Name>ball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\ball.xnb</Output>
+      <Time>2015-12-07T02:20:02.8641326+09:00</Time>
+    </Item>
+    <Item>
+      <Source>start.jpg</Source>
+      <Name>start</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\start.xnb</Output>
+      <Time>2015-12-07T02:20:02.8701329+09:00</Time>
+    </Item>
+    <Item>
+      <Source>loading.jpg</Source>
+      <Name>loading</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\loading.xnb</Output>
+      <Time>2015-12-07T02:20:02.8681328+09:00</Time>
+    </Item>
+    <Item>
+      <Source>exit.jpg</Source>
+      <Name>exit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\exit.xnb</Output>
+      <Time>2015-12-07T02:20:02.8671328+09:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID>{3FCB5DF1-A1B2-4834-8735-B03624824BE1}</ContentProjectGUID>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>L:\seafight\sea2\tp-seafight\seafight\seafightContent\</RootDirectory>
+      <LoggerRootDirectory>L:\seafight\sea2\tp-seafight\seafight\seafight\</LoggerRootDirectory>
+      <IntermediateDirectory>L:\seafight\sea2\tp-seafight\seafight\seafight\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2011-09-01T21:22:30+09:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2011-09-01T21:22:30+09:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2011-09-01T21:22:30+09:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2011-09-01T21:22:30+09:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2011-09-01T21:22:30+09:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2011-09-01T21:22:30+09:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2015-09-28T21:38:39.383465+09:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

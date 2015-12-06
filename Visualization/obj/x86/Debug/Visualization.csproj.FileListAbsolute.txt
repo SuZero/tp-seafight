@@ -1,0 +1,6 @@
+L:\seafight\sea2\tp-seafight\Visualization\bin\x86\Debug\Visualization.dll
+L:\seafight\sea2\tp-seafight\Visualization\bin\x86\Debug\Visualization.pdb
+L:\seafight\sea2\tp-seafight\Visualization\obj\x86\Debug\Visualization.csprojResolveAssemblyReference.cache
+L:\seafight\sea2\tp-seafight\Visualization\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+L:\seafight\sea2\tp-seafight\Visualization\obj\x86\Debug\Visualization.dll
+L:\seafight\sea2\tp-seafight\Visualization\obj\x86\Debug\Visualization.pdb
