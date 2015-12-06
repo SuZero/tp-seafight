@@ -63,12 +63,6 @@
     <Compile Include="Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BaseObject\BaseObject.csproj">
-      <Project>{1d2510b8-2cb9-462b-8f88-f0018701d561}</Project>
-      <Name>BaseObject</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

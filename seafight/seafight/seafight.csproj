@@ -88,10 +88,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BaseObject\BaseObject.csproj">
-      <Project>{1d2510b8-2cb9-462b-8f88-f0018701d561}</Project>
-      <Name>BaseObject</Name>
-    </ProjectReference>
     <ProjectReference Include="..\seafightContent\seafightContent.contentproj">
       <Name>seafightContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

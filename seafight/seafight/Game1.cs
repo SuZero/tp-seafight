@@ -258,7 +258,8 @@ namespace seafight
                 if (mouseClickRect.Intersects(startButtonRect)) //player clicked start button
                 {
                    // gameState = GameState.Loading;
-                    gameState = GameState.Playing;
+                    gameState = GameState.GameTypeMenu;
+                    //gameState = GameState.Playing;
                     // isLoading = true;
                 }
                 if (mouseClickRect.Intersects(loadButtonRect)) //player clicked start button
