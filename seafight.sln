@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seafight", "seafight\seafight\seafight.csproj", "{F2A44C0C-D1CD-479D-946A-5B358D8F3FB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seafightContent", "seafight\seafightContent\seafightContent.contentproj", "{3FCB5DF1-A1B2-4834-8735-B03624824BE1}"
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "seafightContent", "seafight\seafightContent\seafightContent.contentproj", "{3FCB5DF1-A1B2-4834-8735-B03624824BE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
