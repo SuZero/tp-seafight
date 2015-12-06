@@ -1,9 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seafight", "seafight\seafight\seafight.csproj", "{F2A44C0C-D1CD-479D-946A-5B358D8F3FB3}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "seafightContent", "seafight\seafightContent\seafightContent.contentproj", "{3FCB5DF1-A1B2-4834-8735-B03624824BE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seafightContent", "seafight\seafightContent\seafightContent.contentproj", "{3FCB5DF1-A1B2-4834-8735-B03624824BE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Control", "Control\Control.csproj", "{4765C0A7-566E-4279-9041-3E3440A4A3B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleField", "BattleField\BattleField.csproj", "{10E4D1F6-CDEB-4855-9BCE-91663EBB9E4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visualization", "Visualization\Visualization.csproj", "{5AC1541F-00B5-46B7-B635-15E495BCF626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI", "AI\AI.csproj", "{65F36AD3-5913-459B-901B-FD216D15D729}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multiplayer", "Multiplayer\Multiplayer.csproj", "{1EFD0990-8BBB-496B-B3C3-DE0CD4D52DC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem", "FileSystem\FileSystem.csproj", "{D39B3679-DBC4-4469-9276-A13E0DF4610E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +31,30 @@ Global
 		{F2A44C0C-D1CD-479D-946A-5B358D8F3FB3}.Release|x86.Build.0 = Release|x86
 		{3FCB5DF1-A1B2-4834-8735-B03624824BE1}.Debug|x86.ActiveCfg = Debug|x86
 		{3FCB5DF1-A1B2-4834-8735-B03624824BE1}.Release|x86.ActiveCfg = Release|x86
+		{4765C0A7-566E-4279-9041-3E3440A4A3B7}.Debug|x86.ActiveCfg = Debug|x86
+		{4765C0A7-566E-4279-9041-3E3440A4A3B7}.Debug|x86.Build.0 = Debug|x86
+		{4765C0A7-566E-4279-9041-3E3440A4A3B7}.Release|x86.ActiveCfg = Release|x86
+		{4765C0A7-566E-4279-9041-3E3440A4A3B7}.Release|x86.Build.0 = Release|x86
+		{10E4D1F6-CDEB-4855-9BCE-91663EBB9E4D}.Debug|x86.ActiveCfg = Debug|x86
+		{10E4D1F6-CDEB-4855-9BCE-91663EBB9E4D}.Debug|x86.Build.0 = Debug|x86
+		{10E4D1F6-CDEB-4855-9BCE-91663EBB9E4D}.Release|x86.ActiveCfg = Release|x86
+		{10E4D1F6-CDEB-4855-9BCE-91663EBB9E4D}.Release|x86.Build.0 = Release|x86
+		{5AC1541F-00B5-46B7-B635-15E495BCF626}.Debug|x86.ActiveCfg = Debug|x86
+		{5AC1541F-00B5-46B7-B635-15E495BCF626}.Debug|x86.Build.0 = Debug|x86
+		{5AC1541F-00B5-46B7-B635-15E495BCF626}.Release|x86.ActiveCfg = Release|x86
+		{5AC1541F-00B5-46B7-B635-15E495BCF626}.Release|x86.Build.0 = Release|x86
+		{65F36AD3-5913-459B-901B-FD216D15D729}.Debug|x86.ActiveCfg = Debug|x86
+		{65F36AD3-5913-459B-901B-FD216D15D729}.Debug|x86.Build.0 = Debug|x86
+		{65F36AD3-5913-459B-901B-FD216D15D729}.Release|x86.ActiveCfg = Release|x86
+		{65F36AD3-5913-459B-901B-FD216D15D729}.Release|x86.Build.0 = Release|x86
+		{1EFD0990-8BBB-496B-B3C3-DE0CD4D52DC5}.Debug|x86.ActiveCfg = Debug|x86
+		{1EFD0990-8BBB-496B-B3C3-DE0CD4D52DC5}.Debug|x86.Build.0 = Debug|x86
+		{1EFD0990-8BBB-496B-B3C3-DE0CD4D52DC5}.Release|x86.ActiveCfg = Release|x86
+		{1EFD0990-8BBB-496B-B3C3-DE0CD4D52DC5}.Release|x86.Build.0 = Release|x86
+		{D39B3679-DBC4-4469-9276-A13E0DF4610E}.Debug|x86.ActiveCfg = Debug|x86
+		{D39B3679-DBC4-4469-9276-A13E0DF4610E}.Debug|x86.Build.0 = Debug|x86
+		{D39B3679-DBC4-4469-9276-A13E0DF4610E}.Release|x86.ActiveCfg = Release|x86
+		{D39B3679-DBC4-4469-9276-A13E0DF4610E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
