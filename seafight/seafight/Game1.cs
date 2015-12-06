@@ -26,12 +26,12 @@ namespace seafight
         private Texture2D startButton;
         private Texture2D exitButton;
         private Texture2D pauseButton;
-        private Texture2D resumeButton;
+        private Texture2D loadButton;
         private Texture2D loadingScreen;
         private Vector2 orbPosition;
         private Vector2 startButtonPosition;
         private Vector2 exitButtonPosition;
-        private Vector2 resumeButtonPosition;
+        private Vector2 loadButtonPosition;
         private const float OrbWidth = 50f;
         private const float OrbHeight = 50f;
         private float speed = 1.5f;
@@ -74,8 +74,8 @@ namespace seafight
             IsMouseVisible = true;
 
 
-
-            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
+            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 150);
+            loadButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
             exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 250);
 
             //set the gamestate to start menu
@@ -104,6 +104,7 @@ namespace seafight
             // TODO: use this.Content to load your game content here
 
             startButton = Content.Load<Texture2D>("start");
+            loadButton = Content.Load<Texture2D>("start");
             exitButton = Content.Load<Texture2D>("exit");
             loadingScreen = Content.Load<Texture2D>("loading");
 
@@ -190,6 +191,7 @@ namespace seafight
             if (gameState == GameState.StartMenu)
             {
                 spriteBatch.Draw(startButton, startButtonPosition, Color.White);
+                spriteBatch.Draw(loadButton, loadButtonPosition, Color.White);
                 spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
             }
             if (gameState == GameState.Playing)
@@ -242,10 +244,18 @@ namespace seafight
             {
                 Rectangle startButtonRect = new Rectangle((int)startButtonPosition.X,
                                             (int)startButtonPosition.Y, 100, 20);
+                Rectangle loadButtonRect = new Rectangle((int)loadButtonPosition.X,
+                                           (int)loadButtonPosition.Y, 100, 20);
                 Rectangle exitButtonRect = new Rectangle((int)exitButtonPosition.X,
                                             (int)exitButtonPosition.Y, 100, 20);
 
                 if (mouseClickRect.Intersects(startButtonRect)) //player clicked start button
+                {
+                   // gameState = GameState.Loading;
+                    gameState = GameState.Playing;
+                    // isLoading = true;
+                }
+                if (mouseClickRect.Intersects(loadButtonRect)) //player clicked start button
                 {
                     gameState = GameState.Loading;
                     //gameState = GameState.Playing;
