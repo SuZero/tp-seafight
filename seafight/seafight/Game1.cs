@@ -25,13 +25,28 @@ namespace seafight
         private Texture2D orb;
         private Texture2D startButton;
         private Texture2D exitButton;
-        private Texture2D pauseButton;
         private Texture2D loadButton;
+        private Texture2D settingsButton;
+        private Texture2D localgameButton;
+        private Texture2D networkgameButton;
+
+
         private Texture2D loadingScreen;
+        private Texture2D startScreen;
+
+
         private Vector2 orbPosition;
         private Vector2 startButtonPosition;
         private Vector2 exitButtonPosition;
         private Vector2 loadButtonPosition;
+        private Vector2 settingsButtonPosition;
+        private Vector2 localgameButtonPosition;
+        private Vector2 networkgameButtonPosition;
+
+
+        private Vector2 startScreenPosition;
+
+
         private const float OrbWidth = 50f;
         private const float OrbHeight = 50f;
         private float speed = 1.5f;
@@ -75,9 +90,13 @@ namespace seafight
             IsMouseVisible = true;
 
 
-            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 150);
-            loadButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
-            exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 250);
+            startButtonPosition = new Vector2(50, 350);
+            loadButtonPosition = new Vector2(50, 375);
+            settingsButtonPosition = new Vector2(50, 400);
+            exitButtonPosition = new Vector2(50, 425);
+            localgameButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 150);
+            networkgameButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
+            startScreenPosition = new Vector2(0, 0);
 
             //set the gamestate to start menu
             gameState = GameState.StartMenu;
@@ -105,11 +124,14 @@ namespace seafight
             // TODO: use this.Content to load your game content here
 
             startButton = Content.Load<Texture2D>("start");
-            loadButton = Content.Load<Texture2D>("start");
+            localgameButton = Content.Load<Texture2D>("start");
+            loadButton = Content.Load<Texture2D>("load");
+            settingsButton = Content.Load<Texture2D>("settings");
             exitButton = Content.Load<Texture2D>("exit");
+            networkgameButton = Content.Load<Texture2D>("exit");
             loadingScreen = Content.Load<Texture2D>("loading");
-
-
+            orb = Content.Load<Texture2D>("ball");
+            startScreen = Content.Load<Texture2D>("startscreen");
         }
 
         /// <summary>
@@ -191,18 +213,21 @@ namespace seafight
 
             if (gameState == GameState.StartMenu)
             {
+                spriteBatch.Draw(startScreen,startScreenPosition,Color.White);
                 spriteBatch.Draw(startButton, startButtonPosition, Color.White);
                 spriteBatch.Draw(loadButton, loadButtonPosition, Color.White);
+                spriteBatch.Draw(settingsButton, settingsButtonPosition, Color.White);
                 spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
             }
             if (gameState == GameState.GameTypeMenu)
             {
-                spriteBatch.Draw(startButton, startButtonPosition, Color.White);
-                spriteBatch.Draw(loadButton, loadButtonPosition, Color.White);
+                spriteBatch.Draw(localgameButton, localgameButtonPosition, Color.White);
+                spriteBatch.Draw(networkgameButton, networkgameButtonPosition, Color.White);
             }
             if (gameState == GameState.Playing)
             {
                 //orb
+
                 spriteBatch.Draw(orb, orbPosition, Color.White);
             }
 
@@ -226,7 +251,7 @@ namespace seafight
         void LoadGame()
         {
             //load the game images into the content pipeline
-            orb = Content.Load<Texture2D>("ball");
+          
 
             //set the position of the orb in the middle of the gamewindow
             orbPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - (OrbWidth / 2),
@@ -259,6 +284,7 @@ namespace seafight
                 {
                    // gameState = GameState.Loading;
                     gameState = GameState.GameTypeMenu;
+                    Thread.Sleep(500);
                     //gameState = GameState.Playing;
                     // isLoading = true;
                 }
@@ -272,6 +298,28 @@ namespace seafight
                 {
                     Exit();
                 }
+            }
+            if (gameState == GameState.GameTypeMenu)
+            {
+                Rectangle localgameButtonRect = new Rectangle((int)localgameButtonPosition.X,
+                                            (int)localgameButtonPosition.Y, 100, 20);
+                Rectangle networkgameButtonRect = new Rectangle((int)networkgameButtonPosition.X,
+                                            (int)networkgameButtonPosition.Y, 100, 20);
+
+                if (mouseClickRect.Intersects(localgameButtonRect)) //player clicked start button
+                {
+                    // gameState = GameState.Loading;
+                    //gameState = GameState.GameTypeMenu;
+                    gameState = GameState.Playing;
+                    // isLoading = true;
+                }
+                if (mouseClickRect.Intersects(networkgameButtonRect)) //player clicked start button
+                {
+                    gameState = GameState.Loading;
+                    //gameState = GameState.Playing;
+                    // isLoading = true;
+                }
+               
             }
         }
     }

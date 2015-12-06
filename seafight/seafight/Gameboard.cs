@@ -36,7 +36,7 @@ namespace BattleField
 
         internal IPlayerView GetPlayerView(Player whosTurn)
         {
-           return  new GameView(this, whosTurn);
+          return  new GameView(this, whosTurn);
         }
 
         internal ShotFeedback FireShot(Player whosTurn, Shot playerShot)
