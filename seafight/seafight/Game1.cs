@@ -29,10 +29,11 @@ namespace seafight
         private Texture2D settingsButton;
         private Texture2D localgameButton;
         private Texture2D networkgameButton;
-
+        private Texture2D cell;
 
         private Texture2D loadingScreen;
         private Texture2D startScreen;
+        private Texture2D playScreen;
 
 
         private Vector2 orbPosition;
@@ -42,7 +43,8 @@ namespace seafight
         private Vector2 settingsButtonPosition;
         private Vector2 localgameButtonPosition;
         private Vector2 networkgameButtonPosition;
-
+        private Vector2 fieldPosition;
+        private Vector2 field2Position;
 
         private Vector2 startScreenPosition;
 
@@ -97,6 +99,8 @@ namespace seafight
             localgameButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 150);
             networkgameButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
             startScreenPosition = new Vector2(0, 0);
+             fieldPosition = new Vector2(50, 50);
+             field2Position = new Vector2(GraphicsDevice.Viewport.Width - 80, GraphicsDevice.Viewport.Width-80);
 
             //set the gamestate to start menu
             gameState = GameState.StartMenu;
@@ -132,6 +136,8 @@ namespace seafight
             loadingScreen = Content.Load<Texture2D>("loading");
             orb = Content.Load<Texture2D>("ball");
             startScreen = Content.Load<Texture2D>("startscreen");
+            cell = Content.Load<Texture2D>("cell");
+            playScreen = Content.Load<Texture2D>("map");
         }
 
         /// <summary>
@@ -221,14 +227,24 @@ namespace seafight
             }
             if (gameState == GameState.GameTypeMenu)
             {
-                spriteBatch.Draw(localgameButton, localgameButtonPosition, Color.White);
+                spriteBatch.Draw(localgameButton, localgameButtonPosition,Color.White);
                 spriteBatch.Draw(networkgameButton, networkgameButtonPosition, Color.White);
             }
             if (gameState == GameState.Playing)
             {
+                spriteBatch.Draw(playScreen, startScreenPosition, null, Color.White, 0, new Vector2(0, 0), (0.6f),0, 1);
                 //orb
+                for (int i=0;i<9;i++)
+                    for (int j=0;j<9;j++)
+                    {
+                        spriteBatch.Draw(cell, new Vector2(fieldPosition.X + i * 30, fieldPosition.Y + j * 30),Color.White);
+                        spriteBatch.Draw(cell, new Vector2(field2Position.X - i * 30, fieldPosition.Y + j * 30), Color.White);
+                    
+                    }
+                
 
-                spriteBatch.Draw(orb, orbPosition, Color.White);
+
+               // spriteBatch.Draw(orb, orbPosition, Color.White);
             }
 
             if (gameState == GameState.Loading)

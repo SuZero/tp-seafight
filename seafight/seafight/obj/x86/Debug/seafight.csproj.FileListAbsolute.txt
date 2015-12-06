@@ -24,3 +24,5 @@ L:\seafight\sea2\tp-seafight\seafight\seafight\obj\x86\Debug\seafight.pdb
 L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\startscreen.xnb
 L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\load.xnb
 L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\settings.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\cell.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\map.xnb

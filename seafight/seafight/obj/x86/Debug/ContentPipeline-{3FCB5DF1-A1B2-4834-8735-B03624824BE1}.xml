@@ -73,6 +73,24 @@
       <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\exit.xnb</Output>
       <Time>2015-12-07T01:57:42.0464422+09:00</Time>
     </Item>
+    <Item>
+      <Source>cell.png</Source>
+      <Name>cell</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\cell.xnb</Output>
+      <Time>2015-12-07T03:24:38.2967947+09:00</Time>
+    </Item>
+    <Item>
+      <Source>map.jpg</Source>
+      <Name>map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\map.xnb</Output>
+      <Time>2015-12-07T03:12:28.7130649+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{3FCB5DF1-A1B2-4834-8735-B03624824BE1}</ContentProjectGUID>
