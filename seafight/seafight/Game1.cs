@@ -45,6 +45,7 @@ namespace seafight
         enum GameState
         {
             StartMenu,
+            GameTypeMenu,
             Loading,
             Playing,
             Paused
@@ -193,6 +194,11 @@ namespace seafight
                 spriteBatch.Draw(startButton, startButtonPosition, Color.White);
                 spriteBatch.Draw(loadButton, loadButtonPosition, Color.White);
                 spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
+            }
+            if (gameState == GameState.GameTypeMenu)
+            {
+                spriteBatch.Draw(startButton, startButtonPosition, Color.White);
+                spriteBatch.Draw(loadButton, loadButtonPosition, Color.White);
             }
             if (gameState == GameState.Playing)
             {
