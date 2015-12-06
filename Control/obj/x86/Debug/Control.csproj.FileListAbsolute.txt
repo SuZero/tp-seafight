@@ -1,6 +1,0 @@
-L:\seafight\seafight\tp-seafight\Control\obj\x86\Debug\Control.csprojResolveAssemblyReference.cache
-L:\seafight\seafight\tp-seafight\Control\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-L:\seafight\seafight\tp-seafight\Control\bin\x86\Debug\Control.dll
-L:\seafight\seafight\tp-seafight\Control\bin\x86\Debug\Control.pdb
-L:\seafight\seafight\tp-seafight\Control\obj\x86\Debug\Control.dll
-L:\seafight\seafight\tp-seafight\Control\obj\x86\Debug\Control.pdb
