@@ -15,7 +15,7 @@ namespace Multiplayer
     public class Session : Microsoft.Xna.Framework.Game
     {
         NetworkSession networkSession;
-        //ƒл€ записи и чтени€ пакетов данных
+        //ƒБE заБEси БEчтенБE БEБEтоБEдаыLых
         PacketWriter packetWriter;
         PacketReader packetReader;
 
@@ -26,7 +26,7 @@ namespace Multiplayer
         public void createRoom()
         {
             networkSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 2);
-            //ѕодключаем обработчики событий
+            //ѕьCБEючаем ь@работчикБEсобытиБE
             joinEventHandlers();
         }
 
@@ -37,32 +37,32 @@ namespace Multiplayer
         }
 
 
-        //ѕодключение обработчиков событий
+        //ѕьCБEючеыGБEь@работчикьA событиБE
         void joinEventHandlers()
         {
-            //»грок вошел в комнату
+            //»грьI вошеБEБEБEБEатБE
             networkSession.GamerJoined += new EventHandler<GamerJoinedEventArgs>(networkSession_GamerJoined);
-            //—есси€ закрылась
+            //—есси€ заБEыласБE
             networkSession.SessionEnded += new EventHandler<NetworkSessionEndedEventArgs>(networkSession_SessionEnded);
         }
-        //ќбработчик событи€, происход€щего при присоединении нового игрока
+        //ќбрабъCчиБEсобыти€, БEьGсхьC€щего БEБEБEисьDдиыDыGБEыMвого игроБE
         void networkSession_GamerJoined(object sender, GamerJoinedEventArgs e)
         {
-            // Ќомер игрока
+            // ЌьKер игроБE
             int player = networkSession.AllGamers.IndexOf(e.Gamer);
 
-            // e.Gamer.Tag = —оздать объект
+            // e.Gamer.Tag = —ьFдать ь@ъеБE
         }
 
-        //ќбработчик событи€, происход€щего при закрытии сессии
+        //ќбрабъCчиБEсобыти€, БEьGсхьC€щего БEБEзаБEытии сессии
         void networkSession_SessionEnded(object sender, NetworkSessionEndedEventArgs e)
         {
-            //уничтожим сессию
+            //уничтожиБEсессБE
             networkSession.Dispose();
             networkSession = null;
         }
 
-        //ѕроцедура обработки событий в течение сессии
+        //ѕроцедура ь@работкБEсобытиБEБEтечеыGБEсессии
         void WorkWithSession()
         {
 

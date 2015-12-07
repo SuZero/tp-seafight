@@ -60,12 +60,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="MethodicalPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StdPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaseObject\BaseObject.csproj">
       <Project>{1d2510b8-2cb9-462b-8f88-f0018701d561}</Project>
       <Name>BaseObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BattleField\BattleField.csproj">
+      <Project>{10e4d1f6-cdeb-4855-9bce-91663ebb9e4d}</Project>
+      <Name>BattleField</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

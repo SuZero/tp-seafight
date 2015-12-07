@@ -1,4 +1,5 @@
-﻿namespace BattleField
+﻿using BaseObject;
+namespace BattleField
 {
     public class Shot : Coordinate
     {

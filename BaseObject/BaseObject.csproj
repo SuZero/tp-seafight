@@ -61,7 +61,13 @@
   <ItemGroup>
     <Compile Include="Coordinate.cs" />
     <Compile Include="Enum.cs" />
+    <Compile Include="IPlacement.cs" />
+    <Compile Include="IShip.cs" />
+    <Compile Include="IShot.cs" />
     <Compile Include="PlayerType.cs" />
+    <Compile Include="Player\IPlayer.cs" />
+    <Compile Include="Player\IPlayerView.cs" />
+    <Compile Include="Player\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeAI.cs" />
   </ItemGroup>

@@ -76,9 +76,6 @@
   <ItemGroup>
     <Compile Include="Gameboard.cs" />
     <Compile Include="GameView.cs" />
-    <Compile Include="Player\IPlayer.cs" />
-    <Compile Include="Player\IPlayerView.cs" />
-    <Compile Include="Player\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />

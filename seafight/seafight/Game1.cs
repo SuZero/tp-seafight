@@ -36,6 +36,9 @@ namespace seafight
         private Texture2D offButton;
         private Texture2D lessButton;
         private Texture2D moreButton;
+        private Texture2D loadFileButton;
+        private Texture2D createRoomButton;
+        private Texture2D joinButton;
         private Texture2D toBattleButton;
         private Texture2D localgameButton;
         private Texture2D networkgameButton;
@@ -61,6 +64,7 @@ namespace seafight
         private Vector2 offButtonPosition;
         private Vector2 lessButtonPosition;
         private Vector2 moreButtonPosition;
+        private Vector2 loadFileButtonPosition;
         private Vector2 toBattleButtonPosition;
         private Vector2 localgameButtonPosition;
         private Vector2 networkgameButtonPosition;
@@ -79,8 +83,12 @@ namespace seafight
         SoundState soundState;
         ShuffleState shuffleState;
         PlacingState placingState;
-        DifficultyState difficultyState;
+        FileSystem.SaveLoad.DifficultyState difficultyState;
         Song maintheme;
+        SpriteFont myFont;
+
+
+
 
         enum GameState
         {
@@ -88,10 +96,14 @@ namespace seafight
             GameTypeMenu,
             Settings,
             Loading,
+            LoadingFinished,
             BattleSettings,
+            MPBattleSettings,
             BattlePrep,
             Playing,
-            Paused
+            MPBattlePrep,
+            MPPlaying,
+            MPTypeMenu
         }
         enum SoundState
         {
@@ -111,12 +123,7 @@ namespace seafight
             Off
 
         }
-        enum DifficultyState
-        {
-            Easy,
-            Normal,
-            Hard
-        }
+        
 
         
 
@@ -138,6 +145,7 @@ namespace seafight
         {
             // TODO: Add your initialization logic here
             //enable the mousepointer
+
             IsMouseVisible = true;
 
 
@@ -157,6 +165,7 @@ namespace seafight
             offButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) + 5, 100);
             lessButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 25, 150);
             moreButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) + 5, 150);
+            loadFileButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 200, (GraphicsDevice.Viewport.Height / 2)-50);
             toBattleButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 180);
             startScreenPosition = new Vector2(0, 0);
             titlePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 200, 150);
@@ -166,7 +175,7 @@ namespace seafight
             //set the gamestate to start menu
             gameState = GameState.StartMenu;
             soundState = SoundState.On;
-            difficultyState = DifficultyState.Normal;
+            difficultyState = FileSystem.SaveLoad.DifficultyState.Normal;
             shuffleState = ShuffleState.Off;
             placingState = PlacingState.On;
 
@@ -177,6 +186,8 @@ namespace seafight
 
 
             base.Initialize();
+
+            FileSystem.SaveLoad.GetDevice();
 
         }
 
@@ -192,7 +203,6 @@ namespace seafight
             // TODO: use this.Content to load your game content here
 
             startButton = Content.Load<Texture2D>("start");
-            localgameButton = Content.Load<Texture2D>("localgame");
             loadButton = Content.Load<Texture2D>("load");
             settingsButton = Content.Load<Texture2D>("settings");
             aboutButton = Content.Load<Texture2D>("about");
@@ -207,7 +217,11 @@ namespace seafight
             lessButton = Content.Load<Texture2D>("less");
             moreButton = Content.Load<Texture2D>("more");
             toBattleButton = Content.Load<Texture2D>("tobattle");
+            loadFileButton = Content.Load<Texture2D>("loadfile");
+            localgameButton = Content.Load<Texture2D>("localgame");
             networkgameButton = Content.Load<Texture2D>("networkgame");
+            createRoomButton = Content.Load<Texture2D>("createroom");
+            joinButton = Content.Load<Texture2D>("join");
             loadingScreen = Content.Load<Texture2D>("loading");
             startScreen = Content.Load<Texture2D>("startscreen");
             title = Content.Load<Texture2D>("title");
@@ -239,15 +253,7 @@ namespace seafight
 
             //load the game when needed
             //isLoading bool is to prevent the LoadGame method from being called 60 times a seconds
-            if (gameState == GameState.Loading && !isLoading)
-            {
-                //set backgroundthread
-                backgroundThread = new Thread(LoadGame);
-                isLoading = true;
-
-                //start backgroundthread
-                backgroundThread.Start();
-            }
+            
 
             //move the orb if the game is in progress
             if (gameState == GameState.Playing)
@@ -256,12 +262,11 @@ namespace seafight
             }
             if ((soundState == SoundState.On)&&(MediaPlayer.State==MediaState.Stopped))
             {
-                MediaPlayer.Play(maintheme);
-                MediaPlayer.Volume = volume;
+                Visualization.Sounds.PlayMusic(maintheme, volume);
             }
             if ((soundState == SoundState.Off) && (MediaPlayer.State==MediaState.Playing))
             {
-                MediaPlayer.Stop();
+                Visualization.Sounds.StopMusic();
             }
 
             //wait for mouseclick
@@ -269,16 +274,14 @@ namespace seafight
             if (previousMouseState.LeftButton == ButtonState.Pressed &&
                 mouseState.LeftButton == ButtonState.Released)
             {
+                
                 MouseClicked(mouseState.X, mouseState.Y);
+                
             }
 
             previousMouseState = mouseState;
 
-            if (gameState == GameState.Playing && isLoading)
-            {
-                LoadGame();
-                isLoading = false;
-            }
+           
             base.Update(gameTime);
         }
 
@@ -313,6 +316,13 @@ namespace seafight
                 spriteBatch.Draw(networkgameButton, networkgameButtonPosition, Color.White);
                 spriteBatch.Draw(backButton, backButtonPosition, Color.White);
             }
+            if (gameState == GameState.MPTypeMenu)
+            {
+                spriteBatch.Draw(startScreen, startScreenPosition, Color.White);
+                spriteBatch.Draw(createRoomButton, new Vector2(localgameButtonPosition.X-200,localgameButtonPosition.Y), Color.White);
+                spriteBatch.Draw(joinButton, new Vector2(localgameButtonPosition.X + 200, localgameButtonPosition.Y), Color.White);
+                spriteBatch.Draw(backButton, backButtonPosition, Color.White);
+            }
             if (gameState == GameState.Settings)
             {
                 spriteBatch.Draw(startScreen, startScreenPosition, Color.White);
@@ -335,21 +345,31 @@ namespace seafight
                 spriteBatch.Draw(toBattleButton,toBattleButtonPosition, Color.White);
                 spriteBatch.Draw(backButton, backButtonPosition, Color.White);
             }
+            if (gameState == GameState.MPBattleSettings)
+            {
+                spriteBatch.Draw(startScreen, startScreenPosition, Color.White);
+                spriteBatch.Draw(onButton, onButtonPosition, Color.White);
+                spriteBatch.Draw(offButton, offButtonPosition, Color.White);
+                spriteBatch.Draw(onButton, new Vector2(onButtonPosition.X, onButtonPosition.Y + 30), Color.White);
+                spriteBatch.Draw(offButton, new Vector2(offButtonPosition.X, offButtonPosition.Y + 30), Color.White);
+                spriteBatch.Draw(toBattleButton, toBattleButtonPosition, Color.White);
+                spriteBatch.Draw(backButton, backButtonPosition, Color.White);
+            }
             if (gameState == GameState.Playing)
             {
                 spriteBatch.Draw(playScreen, startScreenPosition, null, Color.White, 0, new Vector2(0, 0), (0.6f),0, 1);
                 //orb
-                if (difficultyState == DifficultyState.Easy)
+                if (difficultyState == FileSystem.SaveLoad.DifficultyState.Easy)
                 {
 
                     spriteBatch.Draw(easyDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30), Color.White);
                    
                 }
-                if (difficultyState == DifficultyState.Normal)
+                if (difficultyState == FileSystem.SaveLoad.DifficultyState.Normal)
                 {
                     spriteBatch.Draw(normalDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30), Color.White);
                 }
-                if (difficultyState == DifficultyState.Hard)
+                if (difficultyState == FileSystem.SaveLoad.DifficultyState.Hard)
                 {
                     spriteBatch.Draw(hardDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30), Color.White);
                 }
@@ -372,17 +392,64 @@ namespace seafight
 
                // spriteBatch.Draw(orb, orbPosition, Color.White);
             }
-
-            if (gameState == GameState.BattleSettings)
+            if (gameState == GameState.MPPlaying)
             {
+                spriteBatch.Draw(playScreen, startScreenPosition, null, Color.White, 0, new Vector2(0, 0), (0.6f), 0, 1);
+                //orb
+                if (difficultyState == FileSystem.SaveLoad.DifficultyState.Easy)
+                {
 
+                    spriteBatch.Draw(easyDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30), Color.White);
+
+                }
+                if (difficultyState == FileSystem.SaveLoad.DifficultyState.Normal)
+                {
+                    spriteBatch.Draw(normalDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30), Color.White);
+                }
+                if (difficultyState == FileSystem.SaveLoad.DifficultyState.Hard)
+                {
+                    spriteBatch.Draw(hardDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30), Color.White);
+                }
+
+
+
+                spriteBatch.Draw(backButton, backButtonPosition, Color.White);
+
+                for (int i = 0; i < 9; i++)
+                    for (int j = 0; j < 9; j++)
+                    {
+                        spriteBatch.Draw(cell, new Vector2(fieldPosition.X + i * 30, fieldPosition.Y + j * 30), Color.White);
+                        spriteBatch.Draw(cell, new Vector2(field2Position.X - i * 30, fieldPosition.Y + j * 30), Color.White);
+
+                    }
+                spriteBatch.Draw(onButton, aboutButtonPosition, Color.White);
+                spriteBatch.Draw(offButton, helpButtonPosition, Color.White);
+
+
+
+                // spriteBatch.Draw(orb, orbPosition, Color.White);
             }
+
+            
 
             if (gameState == GameState.Loading)
             {
-                spriteBatch.Draw(loadingScreen, new Vector2((GraphicsDevice.Viewport.Width / 2) -
-                           (loadingScreen.Width / 2), (GraphicsDevice.Viewport.Height / 2) -
-                           (loadingScreen.Height / 2)), Color.YellowGreen);
+                spriteBatch.Draw(startScreen, startScreenPosition, Color.White);
+                spriteBatch.Draw(loadFileButton, loadFileButtonPosition, Color.White);
+                spriteBatch.Draw(backButton, backButtonPosition, Color.White);
+
+
+                //spriteBatch.Draw(loadingScreen, new Vector2((GraphicsDevice.Viewport.Width / 2) - (loadingScreen.Width / 2), (GraphicsDevice.Viewport.Height / 2) - (loadingScreen.Height / 2)), Color.YellowGreen);
+            }
+            if (gameState == GameState.LoadingFinished)
+            {
+                spriteBatch.Draw(startScreen, startScreenPosition, Color.White);
+                spriteBatch.Draw(loadFileButton, loadFileButtonPosition, Color.White);
+                spriteBatch.Draw(backButton, backButtonPosition, Color.White);
+
+
+                spriteBatch.Draw(loadingScreen, new Vector2((GraphicsDevice.Viewport.Width / 2) - (loadingScreen.Width / 2), (GraphicsDevice.Viewport.Height / 2) - (loadingScreen.Height / 2)), Color.YellowGreen);
+                Thread.Sleep(500);
             }
 
 
@@ -395,21 +462,7 @@ namespace seafight
         }
 
 
-        void LoadGame()
-        {
-            //load the game images into the content pipeline
-          
-
-            //set the position of the orb in the middle of the gamewindow
-            
-
-            //since this will go to fast for this demo's purpose, wait for 3 seconds
-            Thread.Sleep(3000);
-
-            //start playing
-            gameState = GameState.Playing;
-            isLoading = true;
-        }
+        
 
         void MouseClicked(int x, int y)
         {
@@ -471,7 +524,7 @@ namespace seafight
                 }
                 if (mouseClickRect.Intersects(networkgameButtonRect)) //player clicked start button
                 {
-                    gameState = GameState.Loading;
+                    gameState = GameState.MPTypeMenu;
                     //gameState = GameState.Playing;
                     // isLoading = true;
                 }
@@ -485,6 +538,81 @@ namespace seafight
                 }
                
             }
+            if (gameState == GameState.MPTypeMenu)
+            {
+                
+                Rectangle createroomButtonRect = new Rectangle((int)localgameButtonPosition.X-200,
+                                            (int)localgameButtonPosition.Y, 400, 100);
+                Rectangle joinButtonRect = new Rectangle((int)localgameButtonPosition.X + 200,
+                                            (int)localgameButtonPosition.Y, 400, 100);
+                Rectangle backButtonRect = new Rectangle((int)backButtonPosition.X,
+                                           (int)backButtonPosition.Y, 100, 20);
+
+                if (mouseClickRect.Intersects(createroomButtonRect)) //player clicked start button
+                {
+                    // MP params init
+
+                    gameState = GameState.MPBattleSettings;
+                    
+                }
+                if (mouseClickRect.Intersects(joinButtonRect)) //player clicked start button
+                {
+                    //Call method to find existing rop
+                    gameState = GameState.MPBattlePrep;
+                    //gameState = GameState.Playing;
+                    // isLoading = true;
+                }
+                if (mouseClickRect.Intersects(backButtonRect)) //player clicked start button
+                {
+                    // gameState = GameState.Loading;
+                    //gameState = GameState.GameTypeMenu;
+                    // gameState = GameState.Playing;
+                    gameState = GameState.GameTypeMenu;
+                    // isLoading = true;
+                }
+
+            }
+            if (gameState == GameState.Loading)
+            {
+
+                Rectangle loadFileButtonRect = new Rectangle((int)loadFileButtonPosition.X,
+                                            (int)loadFileButtonPosition.Y, 400, 100);
+               
+                Rectangle backButtonRect = new Rectangle((int)backButtonPosition.X,
+                                           (int)backButtonPosition.Y, 100, 20);
+
+                if (mouseClickRect.Intersects(loadFileButtonRect)) //player clicked start button
+                {
+
+                    //call load save
+                    //set backgroundthread
+                    backgroundThread = new Thread(FileSystem.SaveLoad.LoadGame);
+                    //start backgroundthread
+                    backgroundThread.Start();
+
+
+                    gameState = GameState.LoadingFinished;
+
+                }
+                
+                if (mouseClickRect.Intersects(backButtonRect)) //player clicked start button
+                {
+                    // gameState = GameState.Loading;
+                    //gameState = GameState.GameTypeMenu;
+                    // gameState = GameState.Playing;
+                    gameState = GameState.GameTypeMenu;
+                    // isLoading = true;
+                }
+
+            }
+            if (gameState == GameState.LoadingFinished)
+            {
+                
+                gameState = GameState.Playing;
+                
+                
+
+            }
             if (gameState == GameState.Playing)
             {
                 
@@ -493,8 +621,51 @@ namespace seafight
                 Rectangle offButtonRect = new Rectangle((int)helpButtonPosition.X,
                                             (int)helpButtonPosition.Y, 100, 20);
 
+                Rectangle saveButtonRect = new Rectangle((int)backButtonPosition.X,
+                                           (int)backButtonPosition.Y, 100, 20);
+
+                if (mouseClickRect.Intersects(onButtonRect)) //player clicked start button
+                {
+                    // gameState = GameState.Loading;
+                    //gameState = GameState.GameTypeMenu;
+
+                    soundState = SoundState.On;
+                    // isLoading = true;
+                }
+                if (mouseClickRect.Intersects(offButtonRect)) //player clicked start button
+                {
+                    soundState = SoundState.Off;
+                    //gameState = GameState.Playing;
+                    // isLoading = true;
+                }
+
+
+                if (mouseClickRect.Intersects(saveButtonRect)) //player clicked start button
+                {
+                    
+                    //call save file
+                    FileSystem.SaveLoad.SaveGame(difficultyState);
+                    gameState = GameState.StartMenu;
+                    // isLoading = true;
+                }
+
+            }
+            if (gameState == GameState.MPPlaying)
+            {
+
+                Rectangle onButtonRect = new Rectangle((int)aboutButtonPosition.X,
+                                           (int)aboutButtonPosition.Y, 100, 20);
+                Rectangle offButtonRect = new Rectangle((int)helpButtonPosition.X,
+                                            (int)helpButtonPosition.Y, 100, 20);
+
                 Rectangle backButtonRect = new Rectangle((int)backButtonPosition.X,
                                            (int)backButtonPosition.Y, 100, 20);
+
+
+                 Rectangle fieldRect = new Rectangle((int)fieldPosition.X,
+                                           (int)fieldPosition.Y, 300, 300);
+                    
+
 
                 if (mouseClickRect.Intersects(onButtonRect)) //player clicked start button
                 {
@@ -518,6 +689,16 @@ namespace seafight
                     //gameState = GameState.GameTypeMenu;
                     // gameState = GameState.Playing;
                     gameState = GameState.StartMenu;
+                    // isLoading = true;
+                }
+                if (mouseClickRect.Intersects(fieldRect)) //player clicked start button
+                {
+                    // gameState = GameState.Loading;
+                    //gameState = GameState.GameTypeMenu;
+                    // gameState = GameState.Playing;
+                    int fieldx = (int)(mouseState.X - (int)fieldPosition.X)/30;
+                    int fieldy = (int)(mouseState.Y - (int)fieldPosition.Y)/30;
+                    
                     // isLoading = true;
                 }
 
@@ -589,6 +770,73 @@ namespace seafight
                 }
 
             }
+            if (gameState == GameState.MPBattleSettings)
+            {
+
+                Rectangle shuffleOnButtonRect = new Rectangle((int)onButtonPosition.X,
+                                           (int)onButtonPosition.Y, 100, 20);
+                Rectangle shuffleOffButtonRect = new Rectangle((int)offButtonPosition.X,
+                                            (int)offButtonPosition.Y, 100, 20);
+                Rectangle placingOnButtonRect = new Rectangle((int)onButtonPosition.X,
+                                           (int)onButtonPosition.Y + 30, 100, 20);
+                Rectangle placingOffButtonRect = new Rectangle((int)offButtonPosition.X,
+                                            (int)offButtonPosition.Y + 30, 100, 20);
+                Rectangle toBattleButtonRect = new Rectangle((int)toBattleButtonPosition.X,
+                                           (int)toBattleButtonPosition.Y, 100, 20);
+
+                Rectangle backButtonRect = new Rectangle((int)backButtonPosition.X,
+                                           (int)backButtonPosition.Y, 100, 20);
+
+                if (mouseClickRect.Intersects(shuffleOnButtonRect)) //player clicked start button
+                {
+                    // gameState = GameState.Loading;
+                    //gameState = GameState.GameTypeMenu;
+
+                    shuffleState = ShuffleState.On;
+                    // isLoading = true;
+                }
+                if (mouseClickRect.Intersects(shuffleOffButtonRect)) //player clicked start button
+                {
+                    shuffleState = ShuffleState.Off;
+                    //gameState = GameState.Playing;
+                    // isLoading = true;
+                }
+                if (mouseClickRect.Intersects(placingOnButtonRect)) //player clicked start button
+                {
+                    // gameState = GameState.Loading;
+                    //gameState = GameState.GameTypeMenu;
+
+                    placingState = PlacingState.On;
+                    // isLoading = true;
+                }
+                if (mouseClickRect.Intersects(placingOffButtonRect)) //player clicked start button
+                {
+                    placingState = PlacingState.Off;
+                    //gameState = GameState.Playing;
+                    // isLoading = true;
+                }
+                if (mouseClickRect.Intersects(toBattleButtonRect)) //player clicked start button
+                {
+                    if (placingState == PlacingState.On)
+                    {
+                        // auto-placing method call
+                        gameState = GameState.MPPlaying;
+                    }
+                    else gameState = GameState.MPBattlePrep;
+                    //gameState = GameState.Playing;
+                    // isLoading = true;
+                }
+
+                if (mouseClickRect.Intersects(backButtonRect)) //player clicked start button
+                {
+                    // gameState = GameState.Loading;
+                    //gameState = GameState.GameTypeMenu;
+                    // gameState = GameState.Playing;
+                    gameState = GameState.MPTypeMenu;
+                    // isLoading = true;
+                }
+
+            }
             if (gameState == GameState.Settings)
             {
                 Rectangle easyDifficultyButtonRect = new Rectangle((int)easyDifficultyButtonPosition.X,
@@ -613,18 +861,18 @@ namespace seafight
                     // gameState = GameState.Loading;
                     //gameState = GameState.GameTypeMenu;
 
-                    difficultyState = DifficultyState.Easy;
+                    difficultyState = FileSystem.SaveLoad.DifficultyState.Easy;
                     // isLoading = true;
                 }
                 if (mouseClickRect.Intersects(normalDifficultyButtonRect)) //player clicked start button
                 {
-                    difficultyState = DifficultyState.Normal;
+                    difficultyState = FileSystem.SaveLoad.DifficultyState.Normal;
                     //gameState = GameState.Playing;
                     // isLoading = true;
                 }
                 if (mouseClickRect.Intersects(hardDifficultyButtonRect)) //player clicked start button
                 {
-                    difficultyState = DifficultyState.Hard;
+                    difficultyState = FileSystem.SaveLoad.DifficultyState.Hard;
                     //gameState = GameState.Playing;
                     // isLoading = true;
                 }
@@ -646,20 +894,13 @@ namespace seafight
                 {
                     // gameState = GameState.Loading;
                     //gameState = GameState.GameTypeMenu;
-                    if (volume>0.0f)
-                    {
-                    volume = volume-0.1f;
-                    MediaPlayer.Volume = volume;
-                    }
-                    // isLoading = true;
+                   volume=Visualization.Sounds.ChangeVolume(volume,-0.1f);
+
+                    
                 }
                 if (mouseClickRect.Intersects(moreButtonRect)) //player clicked start button
                 {
-                    if (volume < 1.0f)
-                    {
-                        volume = volume + 0.1f;
-                        MediaPlayer.Volume = volume;
-                    }
+                    volume=Visualization.Sounds.ChangeVolume(volume,0.1f);
                 }
                 if (mouseClickRect.Intersects(backButtonRect)) //player clicked start button
                 {

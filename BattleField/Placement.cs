@@ -1,4 +1,5 @@
-﻿namespace BattleField
+﻿using BaseObject;
+namespace BattleField
 {
     public class Placement : Coordinate
     {
@@ -15,6 +16,11 @@
         }
         public Placement(IShip ship, Coordinate coord, Orientation orientation) : this(ship, coord.X, coord.Y, orientation)
         {
+        }
+        public Placement()
+        {
+            this.ship = null;
+            this.orientation = Orientation.Horizontal;
         }
     }
 }

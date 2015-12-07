@@ -1,4 +1,4 @@
-﻿namespace BattleField
+﻿namespace BaseObject
 {
     public class Coordinate
     {
@@ -17,6 +17,10 @@
         {
             this.x = coord.x;
             this.y = coord.y;
+        }
+        public Coordinate()
+        {
+            
         }
     }
 }

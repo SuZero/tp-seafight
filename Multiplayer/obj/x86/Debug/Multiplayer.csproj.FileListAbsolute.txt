@@ -1,6 +1,10 @@
-L:\seafight\sea2\tp-seafight\Multiplayer\bin\x86\Debug\Multiplayer.dll
-L:\seafight\sea2\tp-seafight\Multiplayer\bin\x86\Debug\Multiplayer.pdb
 L:\seafight\sea2\tp-seafight\Multiplayer\obj\x86\Debug\Multiplayer.csprojResolveAssemblyReference.cache
 L:\seafight\sea2\tp-seafight\Multiplayer\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+L:\seafight\sea2\tp-seafight\Multiplayer\bin\x86\Debug\Multiplayer.dll
+L:\seafight\sea2\tp-seafight\Multiplayer\bin\x86\Debug\Multiplayer.pdb
+L:\seafight\sea2\tp-seafight\Multiplayer\bin\x86\Debug\BaseObject.dll
+L:\seafight\sea2\tp-seafight\Multiplayer\bin\x86\Debug\BattleField.dll
+L:\seafight\sea2\tp-seafight\Multiplayer\bin\x86\Debug\BaseObject.pdb
+L:\seafight\sea2\tp-seafight\Multiplayer\bin\x86\Debug\BattleField.pdb
 L:\seafight\sea2\tp-seafight\Multiplayer\obj\x86\Debug\Multiplayer.dll
 L:\seafight\sea2\tp-seafight\Multiplayer\obj\x86\Debug\Multiplayer.pdb

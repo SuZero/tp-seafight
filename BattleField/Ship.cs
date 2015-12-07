@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using BaseObject;
 
 namespace BattleField
 {
@@ -15,6 +16,10 @@ namespace BattleField
         {
             length = shipSize;
             sectionDestroyed = (bool[])Array.CreateInstance(typeof(Boolean), shipSize);
+        }
+        public Ship()
+        {
+            length = 0;
         }
         public void Hit(int section)
         {

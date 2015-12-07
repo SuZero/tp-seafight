@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Control;
 using seafight;
+using BaseObject;
 
 namespace BattleField
 {

@@ -182,16 +182,6 @@
       <Time>2015-12-07T15:56:29.8940304+09:00</Time>
     </Item>
     <Item>
-      <Source>titlemusic.mp3</Source>
-      <Name>titlemusic</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\titlemusic.xnb</Output>
-      <Extra>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\titlemusic.wma</Extra>
-      <Time>2015-12-07T16:50:59.7740569+09:00</Time>
-    </Item>
-    <Item>
       <Source>less.png</Source>
       <Name>less</Name>
       <Importer>TextureImporter</Importer>
@@ -217,6 +207,52 @@
       <Options>None</Options>
       <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\tobattle.xnb</Output>
       <Time>2015-12-07T16:49:23.8105681+09:00</Time>
+    </Item>
+    <Item>
+      <Source>createroom.png</Source>
+      <Name>createroom</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\createroom.xnb</Output>
+      <Time>2015-12-07T17:50:30.0632657+09:00</Time>
+    </Item>
+    <Item>
+      <Source>join.png</Source>
+      <Name>join</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\join.xnb</Output>
+      <Time>2015-12-07T17:51:37.3251129+09:00</Time>
+    </Item>
+    <Item>
+      <Source>loadfile.png</Source>
+      <Name>loadfile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\loadfile.xnb</Output>
+      <Time>2015-12-07T18:36:45.3220015+09:00</Time>
+    </Item>
+    <Item>
+      <Source>titlemusic.mp3</Source>
+      <Name>titlemusic</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\titlemusic.xnb</Output>
+      <Extra>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\titlemusic.wma</Extra>
+      <Time>2015-12-07T16:50:59.7740569+09:00</Time>
+    </Item>
+    <Item>
+      <Source>myFont1.spritefont</Source>
+      <Name>myFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\myFont1.xnb</Output>
+      <Time>2015-12-07T21:01:52.4690218+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
