@@ -58,7 +58,7 @@ namespace AI
             // Haha!! I don't care if I hit or miss. :D
         }
 
-        public Shot YourTurn(IPlayerView playerView)
+        public IShot YourTurn(IPlayerView playerView)
         {
             int xMax = playerView.GetXMax();
             int yMax = playerView.GetYMax();
@@ -76,7 +76,7 @@ namespace AI
             if (_nextShot.Y > yMax)
                 _nextShot.Y = 1;
 
-            return fireZeMissles;
+            return (IShot)fireZeMissles;
         }
 
         #endregion

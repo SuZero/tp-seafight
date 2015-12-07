@@ -1,7 +1,7 @@
 ﻿using System;
-using BattleField;
+using BaseObject;
 
-namespace seafight
+namespace BattleField
 {
     public class GameView : IPlayerView
     {
@@ -24,12 +24,14 @@ namespace seafight
             return board.YMax;
         }
 
-        public bool PutShip(Placement placement)
+        public bool PutShip(IPlacement placement)
         {
-            if (!(placement.Ship is Ship))
+          /*  if (!(placement.Ship is Ship))
                 throw new ArgumentException("Объект не является кораблем", "placement");
 
             return board.PlacePlayerShip(player, placement);
+           * */
+            return true;
         }
     }
 }

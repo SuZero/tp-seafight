@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using BaseObject;
 
-namespace BattleField
+namespace BaseObject
 {
     public interface IPlayer
     {

@@ -1,5 +1,5 @@
-﻿using BaseObject;
-namespace BattleField
+﻿
+namespace BaseObject
 {
     public interface IShot 
     {

@@ -1,7 +1,7 @@
 ﻿using BaseObject;
 namespace BattleField
 {
-    public class Placement : Coordinate
+    public class Placement : Coordinate,IPlacement
     {
         private Orientation orientation;
         private IShip ship;
@@ -9,7 +9,7 @@ namespace BattleField
         public Orientation Orientation { get { return orientation; } set { orientation = value; } }
         public IShip Ship { get { return ship; } set { ship = value; } }
 
-        public Placement(IShip ship, int x, int y, Orientation orientation) : base(x, y)
+        public Placement(IShip ship, int x, int y, Orientation orientation):base(x,y)
         {
             this.ship = ship;
             this.orientation = orientation;

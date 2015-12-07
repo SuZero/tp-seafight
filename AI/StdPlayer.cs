@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using seafight;
+using BaseObject;
 using BattleField;
 
 namespace AI
@@ -47,11 +48,11 @@ namespace AI
             }
         }
 
-        public Shot YourTurn(IPlayerView playerView)
+        public IShot YourTurn(IPlayerView playerView)
         {
             int x = _rand.Next(playerView.GetXMax()) + 1;
             int y = _rand.Next(playerView.GetYMax()) + 1;
-            return new Shot(x, y);
+            return (IShot)(new Shot(x, y));
         }
 
         public void ShotFeedback(int hits, int sunkShips)

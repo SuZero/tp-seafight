@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Storage;
+using BaseObject;
 
 namespace FileSystem
 {
@@ -82,7 +83,7 @@ namespace FileSystem
         {
             SaveGameData savefile;
             savefile.difficultyState = diff;
-            savefile.placement =new BattleField.Placement[] {new BattleField.Placement(new BattleField.Ship(4),4,4,BattleField.Orientation.Horizontal)};
+            savefile.placement =new BattleField.Placement[] {new BattleField.Placement(new BattleField.Ship(4),4,4,Orientation.Horizontal)};
            
             //load the game images into the content pipeline
             IAsyncResult result = device.BeginOpenContainer("SeaFightSave", null, null);

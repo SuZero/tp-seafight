@@ -25,11 +25,11 @@ namespace BattleField
         {
             sectionDestroyed[section] = true;
         }
-        public Placement SailTo(int x, int y, Orientation orientation)
+        public IPlacement SailTo(int x, int y, Orientation orientation)
         {
             return new Placement(this, x, y, orientation);
         }
-        public Placement SailTo(Coordinate coord, Orientation orientation)
+        public IPlacement SailTo(Coordinate coord, Orientation orientation)
         {
             return new Placement(this, coord, orientation);
         }
