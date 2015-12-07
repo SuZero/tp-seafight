@@ -1,7 +1,6 @@
 L:\seafight\sea2\tp-seafight\seafight\seafight\obj\x86\Debug\seafight.csprojResolveAssemblyReference.cache
 L:\seafight\sea2\tp-seafight\seafight\seafight\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\GameThumbnail.xnb
-L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\ball.xnb
 L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\start.xnb
 L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\loading.xnb
 L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\exit.xnb
@@ -26,3 +25,19 @@ L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\load.xnb
 L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\settings.xnb
 L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\cell.xnb
 L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\map.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\about.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\help.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\back.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\title.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\localgame.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\networkgame.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\easy.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\normal.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\hard.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\on.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\off.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\titlemusic.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\titlemusic.wma
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\less.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\more.xnb
+L:\seafight\sea2\tp-seafight\seafight\seafight\bin\x86\Debug\Content\tobattle.xnb

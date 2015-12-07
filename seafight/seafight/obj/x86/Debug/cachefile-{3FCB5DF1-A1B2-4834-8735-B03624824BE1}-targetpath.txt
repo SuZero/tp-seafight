@@ -1,5 +1,4 @@
 Content\GameThumbnail.xnb
-Content\ball.xnb
 Content\loading.xnb
 Content\startscreen.xnb
 Content\start.xnb
@@ -8,3 +7,19 @@ Content\settings.xnb
 Content\exit.xnb
 Content\cell.xnb
 Content\map.xnb
+Content\about.xnb
+Content\help.xnb
+Content\back.xnb
+Content\title.xnb
+Content\localgame.xnb
+Content\networkgame.xnb
+Content\easy.xnb
+Content\normal.xnb
+Content\hard.xnb
+Content\on.xnb
+Content\off.xnb
+Content\titlemusic.xnb
+Content\titlemusic.wma
+Content\less.xnb
+Content\more.xnb
+Content\tobattle.xnb
