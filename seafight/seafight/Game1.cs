@@ -21,6 +21,7 @@ namespace seafight
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private DragAndDropController<Item> _dragDropController;
         //global variables
         private Texture2D startButton;
         private Texture2D exitButton;
@@ -86,7 +87,7 @@ namespace seafight
         FileSystem.SaveLoad.DifficultyState difficultyState;
         Song maintheme;
         SpriteFont myFont;
-
+        FileSystem.SaveLoad a;
 
 
 
@@ -147,7 +148,7 @@ namespace seafight
             //enable the mousepointer
 
             IsMouseVisible = true;
-
+            _dragDropController = new DragAndDropController<Item>(this, spriteBatch);
 
             startButtonPosition = new Vector2(50, 350);
             loadButtonPosition = new Vector2(50, 375);
@@ -183,11 +184,11 @@ namespace seafight
             //get the mouse state
             mouseState = Mouse.GetState();
             previousMouseState = mouseState;
-
-
+            a = new FileSystem.SaveLoad();
+            Components.Add(_dragDropController);
             base.Initialize();
-
-            FileSystem.SaveLoad.GetDevice();
+            
+            a.GetDevice();
 
         }
 
@@ -381,8 +382,8 @@ namespace seafight
                 for (int i=0;i<9;i++)
                     for (int j=0;j<9;j++)
                     {
-                        spriteBatch.Draw(cell, new Vector2(fieldPosition.X + i * 30, fieldPosition.Y + j * 30),Color.White);
-                        spriteBatch.Draw(cell, new Vector2(field2Position.X - i * 30, fieldPosition.Y + j * 30), Color.White);
+                        spriteBatch.Draw(cell, new Vector2(fieldPosition.X + i * 20, fieldPosition.Y + j * 20),Color.White);
+                        spriteBatch.Draw(cell, new Vector2(field2Position.X - i * 20, fieldPosition.Y + j * 20), Color.White);
                     
                     }
                 spriteBatch.Draw(onButton, aboutButtonPosition, Color.White);
@@ -586,7 +587,7 @@ namespace seafight
 
                     //call load save
                     //set backgroundthread
-                    backgroundThread = new Thread(FileSystem.SaveLoad.LoadGame);
+                    backgroundThread = new Thread(a.LoadGame);
                     //start backgroundthread
                     backgroundThread.Start();
 
@@ -644,7 +645,7 @@ namespace seafight
                 {
                     
                     //call save file
-                    FileSystem.SaveLoad.SaveGame(difficultyState);
+                    a.SaveGame();
                     gameState = GameState.StartMenu;
                     // isLoading = true;
                 }
@@ -911,6 +912,10 @@ namespace seafight
                     // isLoading = true;
                 }
 
+            }
+            if (gameState == GameState.BattlePrep)
+            {
+                //_dragDropController.Add(item);
             }
         }
     }

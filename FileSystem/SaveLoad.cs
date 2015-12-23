@@ -16,7 +16,7 @@ using BaseObject;
 
 namespace FileSystem
 {
-    public static class SaveLoad
+    public class SaveLoad
     {
         
         public enum DifficultyState
@@ -26,16 +26,17 @@ namespace FileSystem
             Hard
         }
 
-        public static StorageDevice device;
+        public StorageDevice device;
 
 
         public struct SaveGameData
         {
-            public DifficultyState difficultyState;
-            public BattleField.Placement[] placement;
+            public string name;
+            //public DifficultyState difficultyState;
+            //public BattleField.Placement[] placement;
         }
 
-        public static void LoadGame()
+        public void LoadGame()
         {
             
             IAsyncResult result =
@@ -66,7 +67,7 @@ namespace FileSystem
             container.Dispose();
             Thread.Sleep(1000);
         }
-        public static void GetDevice()
+        public void GetDevice()
         {
             IAsyncResult result1 = StorageDevice.BeginShowSelector(PlayerIndex.One, null, null);
 
@@ -79,11 +80,11 @@ namespace FileSystem
             // Close the wait handle.
             result1.AsyncWaitHandle.Close();
         }
-        public static void SaveGame( DifficultyState diff)
+        public void SaveGame()
         {
             SaveGameData savefile;
-            savefile.difficultyState = diff;
-            savefile.placement =new BattleField.Placement[] {new BattleField.Placement(new BattleField.Ship(4),4,4,Orientation.Horizontal)};
+            savefile.name="Ok";
+            //savefile.placement =new BattleField.Placement[] {};
            
             //load the game images into the content pipeline
             IAsyncResult result = device.BeginOpenContainer("SeaFightSave", null, null);
@@ -109,6 +110,10 @@ namespace FileSystem
             XmlSerializer serializer = new XmlSerializer(typeof(SaveGameData));
 
             serializer.Serialize(stream, savefile);
+            // Close the file.
+            stream.Close();
+            // Dispose the container.
+            container.Dispose();
         }
     }
 }
