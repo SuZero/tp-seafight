@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Linq;
 using BaseObject;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace BattleField
 {
     public class Ship : IShip
     {
+        protected Texture2D deck_1 ;
+        protected Texture2D deck_2;
+        protected Texture2D deck_3;
+        protected Texture2D deck_4;
+
         private int length;
+
+    
         private bool[] sectionDestroyed;
 
         public int Length { get { return length; } }

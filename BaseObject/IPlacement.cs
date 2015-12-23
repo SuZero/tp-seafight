@@ -7,7 +7,17 @@ namespace BaseObject
 {
     public interface IPlacement
     {
-        
+
+        Orientation Orientation
+        {
+            get;
+            set;
+        }
+        IShip Ship
+        {
+            get;
+            set;
+        }
 
     }
 }

@@ -3,15 +3,15 @@ using BaseObject;
 
 namespace BattleField
 {
-    public class GameView : IPlayerView
-    {
-        private Gameboard board;
+    public class GameView
+    { 
+        /*  private Gameboard board;
         private Player player;
 
-        public GameView(Gameboard board, Player player)
+        public GameView(Gameboard board, IPlayer player)
         {
             this.board = board;
-            this.player = player;
+            this.player = (Player)player;
         }
 
         public int GetXMax()
@@ -30,8 +30,8 @@ namespace BattleField
                 throw new ArgumentException("Объект не является кораблем", "placement");
 
             return board.PlacePlayerShip(player, placement);
-           * */
+           * 
             return true;
-        }
+        } */
     }
 }

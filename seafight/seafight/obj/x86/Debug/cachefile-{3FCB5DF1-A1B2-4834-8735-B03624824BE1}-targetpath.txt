@@ -27,3 +27,8 @@ Content\loadfile.xnb
 Content\titlemusic.xnb
 Content\titlemusic.wma
 Content\myFont1.xnb
+Content\selectedCell.xnb
+Content\1.xnb
+Content\2.xnb
+Content\3.xnb
+Content\4.xnb

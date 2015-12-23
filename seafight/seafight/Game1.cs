@@ -1,7 +1,10 @@
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using BaseObject;
+using BattleField;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -19,75 +22,84 @@ namespace seafight
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        protected GraphicsDeviceManager graphics;
+        protected SpriteBatch spriteBatch;
         //global variables
-        private Texture2D startButton;
-        private Texture2D exitButton;
-        private Texture2D loadButton;
-        private Texture2D settingsButton;
-        private Texture2D aboutButton;
-        private Texture2D helpButton;
-        private Texture2D backButton;
-        private Texture2D easyDifficultyButton;
-        private Texture2D normalDifficultyButton;
-        private Texture2D hardDifficultyButton;
-        private Texture2D onButton;
-        private Texture2D offButton;
-        private Texture2D lessButton;
-        private Texture2D moreButton;
-        private Texture2D loadFileButton;
-        private Texture2D createRoomButton;
-        private Texture2D joinButton;
-        private Texture2D toBattleButton;
-        private Texture2D localgameButton;
-        private Texture2D networkgameButton;
-        private Texture2D cell;
 
-        private Texture2D loadingScreen;
-        private Texture2D startScreen;
-        private Texture2D title;
-        private Texture2D playScreen;
+        protected Texture2D startButton;
+        protected Texture2D exitButton;
+        protected Texture2D loadButton;
+        protected Texture2D settingsButton;
+        protected Texture2D aboutButton;
+        protected Texture2D helpButton;
+        protected Texture2D backButton;
+        protected Texture2D easyDifficultyButton;
+        protected Texture2D normalDifficultyButton;
+        protected Texture2D hardDifficultyButton;
+        protected Texture2D onButton;
+        protected Texture2D offButton;
+        protected Texture2D lessButton;
+        protected Texture2D moreButton;
+        protected Texture2D loadFileButton;
+        protected Texture2D createRoomButton;
+        protected Texture2D joinButton;
+        protected Texture2D toBattleButton;
+        protected Texture2D localgameButton;
+        protected Texture2D networkgameButton;
+        protected Texture2D cell_texture;
+        protected Texture2D selected_cell_texture;
+        protected Texture2D unselected_cell_texture;
+        Rectangle cell;
+        protected Texture2D loadingScreen;
+        protected Texture2D startScreen;
+        protected Texture2D title;
+        protected Texture2D playScreen;
+        
+        protected Vector2 startButtonPosition;
+        protected Vector2 exitButtonPosition;
+        protected Vector2 loadButtonPosition;
+        protected Vector2 settingsButtonPosition;
+        protected Vector2 aboutButtonPosition;
+        protected Vector2 helpButtonPosition;
+        protected Vector2 backButtonPosition;
+        protected Vector2 easyDifficultyButtonPosition;
+        protected Vector2 normalDifficultyButtonPosition;
+        protected Vector2 hardDifficultyButtonPosition;
+        protected Vector2 onButtonPosition;
+        protected Vector2 offButtonPosition;
+        protected Vector2 lessButtonPosition;
+        protected Vector2 moreButtonPosition;
+        protected Vector2 loadFileButtonPosition;
+        protected Vector2 toBattleButtonPosition;
+        protected Vector2 localgameButtonPosition;
+        protected Vector2 networkgameButtonPosition;
+        protected Vector2 field2Position;
+        protected Vector2 fieldPosition;
 
 
-        private Vector2 startButtonPosition;
-        private Vector2 exitButtonPosition;
-        private Vector2 loadButtonPosition;
-        private Vector2 settingsButtonPosition;
-        private Vector2 aboutButtonPosition;
-        private Vector2 helpButtonPosition;
-        private Vector2 backButtonPosition;
-        private Vector2 easyDifficultyButtonPosition;
-        private Vector2 normalDifficultyButtonPosition;
-        private Vector2 hardDifficultyButtonPosition;
-        private Vector2 onButtonPosition;
-        private Vector2 offButtonPosition;
-        private Vector2 lessButtonPosition;
-        private Vector2 moreButtonPosition;
-        private Vector2 loadFileButtonPosition;
-        private Vector2 toBattleButtonPosition;
-        private Vector2 localgameButtonPosition;
-        private Vector2 networkgameButtonPosition;
-        private Vector2 fieldPosition;
-        private Vector2 field2Position;
+        protected Vector2 startScreenPosition;
+        protected Vector2 titlePosition;
 
-        private Vector2 startScreenPosition;
-        private Vector2 titlePosition;
-
-        private float volume = 1.0f;
-        private Thread backgroundThread;
-        private bool isLoading = false;
-        MouseState mouseState;
-        MouseState previousMouseState;
+        protected float volume = 1.0f;
+        protected Thread backgroundThread;
+        protected bool isLoading = false;
+        protected MouseState mouseState;
+        protected MouseState previousMouseState;
         GameState gameState;
+        GameStarted gameStarted;
         SoundState soundState;
         ShuffleState shuffleState;
         PlacingState placingState;
-        FileSystem.SaveLoad.DifficultyState difficultyState;
+        protected FileSystem.SaveLoad.DifficultyState difficultyState;
         Song maintheme;
-        SpriteFont myFont;
+        protected SpriteFont myFont;
+        private Rectangle MouseRect;
 
+        Player player;
+        Gameboard playerBoard;
 
+        Player enemy;
+        Gameboard enemyBoard;
 
 
         enum GameState
@@ -123,16 +135,75 @@ namespace seafight
             Off
 
         }
-        
 
-        
+        enum GameStarted
+        {
+            Yes,
+            No
 
+        }
+
+        private void drawBoard(Gameboard board, Vector2 position)
+        {
+            if (board.cellList.Count==0)
+            for (int coll =0; coll<board.XMax;coll++)
+                for (int row = 0; row < board.XMax; row++)
+                {
+                    if (board.cellList.Count<(board.XMax*board.YMax))
+                    {
+                        int texture_size=30;
+                        switch (board.XMax)
+                        {
+                                case 10:
+                                texture_size = 30;
+                                    break;
+                                case 15:
+                                    texture_size = 20;
+                                    break;
+                                case 20:
+                                    texture_size = 15;
+                                    break;
+                                default:
+                     
+                                    break;
+                            }
+                        cell = new Rectangle(Convert.ToInt32(position.X) + coll* texture_size,
+                            Convert.ToInt32(position.Y) + row* texture_size, texture_size,
+                            texture_size);
+                        board.cellList.Add(cell,Gameboard.State.LIVE);
+                            spriteBatch.Draw(cell_texture, cell, Color.White);
+                        }
+                }
+            else
+                foreach (var boardCell in board.cellList)
+                {
+                    if(Gameboard.State.BLOOMER== boardCell.Value)
+                    spriteBatch.Draw(cell_texture, boardCell.Key, Color.Black);
+                    if (Gameboard.State.DEAD == boardCell.Value)
+                        spriteBatch.Draw(cell_texture, boardCell.Key, Color.Red);
+                    if (Gameboard.State.LIVE == boardCell.Value)
+                        spriteBatch.Draw(cell_texture, boardCell.Key, Color.White);
+
+                }
+
+       
+
+
+
+        }
+
+        private void refrashBoard(Gameboard board, float x, float y)
+        {
+            
+        }
 
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            GC.Collect();
+           
         }
 
         /// <summary>
@@ -148,7 +219,7 @@ namespace seafight
 
             IsMouseVisible = true;
 
-
+        
             startButtonPosition = new Vector2(50, 350);
             loadButtonPosition = new Vector2(50, 375);
             settingsButtonPosition = new Vector2(50, 400);
@@ -170,15 +241,14 @@ namespace seafight
             startScreenPosition = new Vector2(0, 0);
             titlePosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 200, 150);
             fieldPosition = new Vector2(50, 50);
-            field2Position = new Vector2(GraphicsDevice.Viewport.Width - 80, GraphicsDevice.Viewport.Width-80);
-
+            field2Position = new Vector2(GraphicsDevice.Viewport.Width - 80, 50);
             //set the gamestate to start menu
             gameState = GameState.StartMenu;
-            soundState = SoundState.On;
+            soundState = SoundState.Off;
             difficultyState = FileSystem.SaveLoad.DifficultyState.Normal;
             shuffleState = ShuffleState.Off;
             placingState = PlacingState.On;
-
+            gameStarted = GameStarted.No;
 
             //get the mouse state
             mouseState = Mouse.GetState();
@@ -186,9 +256,9 @@ namespace seafight
 
 
             base.Initialize();
-
+            cell_texture = unselected_cell_texture;
             FileSystem.SaveLoad.GetDevice();
-
+            GC.Collect();
         }
 
         /// <summary>
@@ -225,7 +295,8 @@ namespace seafight
             loadingScreen = Content.Load<Texture2D>("loading");
             startScreen = Content.Load<Texture2D>("startscreen");
             title = Content.Load<Texture2D>("title");
-            cell = Content.Load<Texture2D>("cell");
+            unselected_cell_texture = Content.Load<Texture2D>("cell");
+            selected_cell_texture = Content.Load<Texture2D>("selectedCell");
             playScreen = Content.Load<Texture2D>("map");
             maintheme = Content.Load<Song>("titlemusic");
         }
@@ -291,6 +362,9 @@ namespace seafight
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+
+
+
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
@@ -357,40 +431,64 @@ namespace seafight
             }
             if (gameState == GameState.Playing)
             {
-                spriteBatch.Draw(playScreen, startScreenPosition, null, Color.White, 0, new Vector2(0, 0), (0.6f),0, 1);
-                //orb
-                if (difficultyState == FileSystem.SaveLoad.DifficultyState.Easy)
-                {
-
-                    spriteBatch.Draw(easyDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30), Color.White);
-                   
-                }
-                if (difficultyState == FileSystem.SaveLoad.DifficultyState.Normal)
-                {
-                    spriteBatch.Draw(normalDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30), Color.White);
-                }
-                if (difficultyState == FileSystem.SaveLoad.DifficultyState.Hard)
-                {
-                    spriteBatch.Draw(hardDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30), Color.White);
-                }
-               
-                   
-
-                spriteBatch.Draw(backButton, backButtonPosition, Color.White);
-
-                for (int i=0;i<9;i++)
-                    for (int j=0;j<9;j++)
+                    spriteBatch.Draw(playScreen, startScreenPosition, null, Color.White, 0, new Vector2(0, 0), (0.6f), 0,
+                        1);
+                    //orb
+                    if (difficultyState == FileSystem.SaveLoad.DifficultyState.Easy)
                     {
-                        spriteBatch.Draw(cell, new Vector2(fieldPosition.X + i * 30, fieldPosition.Y + j * 30),Color.White);
-                        spriteBatch.Draw(cell, new Vector2(field2Position.X - i * 30, fieldPosition.Y + j * 30), Color.White);
-                    
+
+                        spriteBatch.Draw(easyDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30),
+                            Color.White);
+
                     }
+                    if (difficultyState == FileSystem.SaveLoad.DifficultyState.Normal)
+                    {
+                        spriteBatch.Draw(normalDifficultyButton,
+                            new Vector2(field2Position.X - 230, fieldPosition.Y - 30), Color.White);
+                    }
+                    if (difficultyState == FileSystem.SaveLoad.DifficultyState.Hard)
+                    {
+                        spriteBatch.Draw(hardDifficultyButton, new Vector2(field2Position.X - 230, fieldPosition.Y - 30),
+                            Color.White);
+                    }
+                    spriteBatch.Draw(backButton, backButtonPosition, Color.White);
+
+
+                if (player == null)
+                    player = new Player("Геймер", PlayerNumber.One, PlayerType.Human, createShips());
+                if (playerBoard == null)
+                    playerBoard = new Gameboard(10, 10, player);
+                drawBoard(playerBoard, new Vector2(50, 50));
+                if (enemy == null)
+                    enemy = new Player("Уася", PlayerNumber.Two, PlayerType.Human, createShips());
+                if (enemyBoard == null)
+                    enemyBoard = new Gameboard(10, 10, enemy);
+                drawBoard(enemyBoard, new Vector2(GraphicsDevice.Viewport.Width - (cell.Width * enemyBoard.XMax) - 50, 50));
                 spriteBatch.Draw(onButton, aboutButtonPosition, Color.White);
-                spriteBatch.Draw(offButton, helpButtonPosition, Color.White);
-                
+                    spriteBatch.Draw(offButton, helpButtonPosition, Color.White);
+
+                 
+                int X = (int)mouseState.X;
+                int Y = (int)mouseState.Y;
+         
+                foreach (var boardCell in enemyBoard.cellList)
+                    {
+                    //enemyBoard.IsSelectedCell(new Coordinate(X, Y))
+     
+                        if (boardCell.Key.Intersects(new Rectangle(X, Y, 1, 1)) && boardCell.Value == Gameboard.State.LIVE)
+                        {
+                        spriteBatch.Draw(selected_cell_texture, boardCell.Key, Color.White);
+
+                        }                
+                     }
+
+     
 
 
-               // spriteBatch.Draw(orb, orbPosition, Color.White);
+
+
+
+                // spriteBatch.Draw(orb, orbPosition, Color.White);
             }
             if (gameState == GameState.MPPlaying)
             {
@@ -415,17 +513,11 @@ namespace seafight
 
                 spriteBatch.Draw(backButton, backButtonPosition, Color.White);
 
-                for (int i = 0; i < 9; i++)
-                    for (int j = 0; j < 9; j++)
-                    {
-                        spriteBatch.Draw(cell, new Vector2(fieldPosition.X + i * 30, fieldPosition.Y + j * 30), Color.White);
-                        spriteBatch.Draw(cell, new Vector2(field2Position.X - i * 30, fieldPosition.Y + j * 30), Color.White);
-
-                    }
+               
                 spriteBatch.Draw(onButton, aboutButtonPosition, Color.White);
                 spriteBatch.Draw(offButton, helpButtonPosition, Color.White);
 
-
+                
 
                 // spriteBatch.Draw(orb, orbPosition, Color.White);
             }
@@ -462,12 +554,26 @@ namespace seafight
         }
 
 
-        
+        public List<IShip> createShips()
+        {
+            List<IShip> playerShip = new List<IShip>();
+            playerShip.Add(new Ship(1));
+            playerShip.Add(new Ship(1));
+            playerShip.Add(new Ship(1));
+            playerShip.Add(new Ship(1));
+            playerShip.Add(new Ship(2));
+            playerShip.Add(new Ship(2));
+            playerShip.Add(new Ship(2));
+            playerShip.Add(new Ship(3));
+            playerShip.Add(new Ship(3));
+            playerShip.Add(new Ship(4));
+            return playerShip;
+        }
 
         void MouseClicked(int x, int y)
         {
             //creates a rectangle of 10x10 around the place where the mouse was clicked
-            Rectangle mouseClickRect = new Rectangle(x, y, 10, 10);
+            Rectangle mouseClickRect = new Rectangle(x, y, 1, 1);
 
             //check the startmenu
             if (gameState == GameState.StartMenu)
@@ -648,6 +754,25 @@ namespace seafight
                     gameState = GameState.StartMenu;
                     // isLoading = true;
                 }
+
+                if (previousMouseState.LeftButton == ButtonState.Pressed &&
+                        mouseState.LeftButton == ButtonState.Released)
+                {
+
+                    foreach (var boardCell in enemyBoard.cellList.Keys.ToList())
+                    {
+                        //enemyBoard.IsSelectedCell(new Coordinate(X, Y))
+
+                        if (boardCell.Intersects(mouseClickRect) && enemyBoard.cellList[boardCell] == Gameboard.State.LIVE)
+                        {
+
+                            enemyBoard.cellList[boardCell] = Gameboard.State.BLOOMER;
+
+                        }
+                    }
+
+                }
+
 
             }
             if (gameState == GameState.MPPlaying)
@@ -881,7 +1006,7 @@ namespace seafight
                     // gameState = GameState.Loading;
                     //gameState = GameState.GameTypeMenu;
 
-                    soundState = SoundState.On;
+                    soundState = SoundState.Off;
                     // isLoading = true;
                 }
                 if (mouseClickRect.Intersects(offButtonRect)) //player clicked start button
@@ -914,4 +1039,6 @@ namespace seafight
             }
         }
     }
+
+
 }
