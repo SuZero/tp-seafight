@@ -7,3 +7,4 @@
 *.xnb
 seafight/seafight/bin/x86/Debug/seafight.exe
 *.exe
+*.suo
