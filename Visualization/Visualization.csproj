@@ -59,6 +59,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cell.cs" />
     <Compile Include="Visualization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

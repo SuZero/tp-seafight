@@ -3,172 +3,67 @@ using System.Collections.Generic;
 using Control;
 using seafight;
 using BaseObject;
+using BattleField;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace BattleField
+namespace seafight
 {
     public class Gameboard
     {
-        private static readonly int[] shipSizes = { 5, 4, 3, 3, 2 };
-        private int _xMax;
-        private int _yMax;
-        private bool _gameStarted;
-        internal Dictionary<Player, List<Placement>> _playerShips = new Dictionary<Player, List<Placement>>(2);
-
-        public int XMax { get { return _xMax; } }
-        public int YMax { get { return _yMax; } }
-
-        public bool GameStarted
+        public enum State
         {
-            get { return _gameStarted; }
-            internal set { _gameStarted = value; }
+            DEAD,
+            BLOOMER,
+            LIVE
         }
 
+        private int xMax;
+        private int yMax;
+        public Dictionary<Rectangle,State> cellList { get; set; }
+     
+        public Player player { get; set; }
 
-        public Gameboard() : this(10, 10)
+        public int XMax { get { return xMax; } }
+        public int YMax { get { return yMax; } }
+
+    public Gameboard(int gridXSize, int gridYSize, Player player)
         {
-        }
-        public Gameboard(int gridXSize, int gridYSize)
-        {
-            _xMax = gridXSize;
-            _yMax = gridYSize;
-            _playerShips.Add(Player.One, new List<Placement>(shipSizes.Length));
-            _playerShips.Add(Player.Two, new List<Placement>(shipSizes.Length));
-        }
-
-        internal IPlayerView GetPlayerView(Player whosTurn)
-        {
-          return  new GameView(this, whosTurn);
-        }
-
-        internal ShotFeedback FireShot(Player whosTurn, Shot playerShot)
-        {
-            List<Placement> targetFleet = _playerShips[whosTurn == Player.One ? Player.Two : Player.One];
-             Ship ship;
-            int start, end, shot, segment;
-            int hits = 0;
-            int sunkShips = 0;
-
-            foreach (Placement shipPlacement in targetFleet)
-            {
-                ship = (Ship)shipPlacement.Ship;
-
-                if (shipPlacement.Orientation == Orientation.Horizontal && shipPlacement.Y == playerShot.Y)
-                {
-                    start = shipPlacement.X;
-                    end = shipPlacement.X + (ship.Length - 1);
-                    shot = playerShot.X;
-                }
-                else if (shipPlacement.Orientation == Orientation.Vertical && shipPlacement.X == playerShot.X)
-                {
-                    start = shipPlacement.Y - (ship.Length - 1);  // TODO: This should be taken care of.
-                    end = shipPlacement.Y;
-                    shot = playerShot.Y;
-                }
-                else
-                    continue;
-
-                segment = shot - start;
-
-                if (segment < ship.Length && segment >= 0)
-                {
-                    ship.Hit(segment);
-                    hits++;
-
-                    if (ship.IsSunk)
-                        sunkShips++;
-                }
-
-            }
-
-            return new ShotFeedback(hits, sunkShips);
+            xMax = gridXSize;
+            yMax = gridYSize;
+            this.player = player;
+             cellList = new Dictionary<Rectangle, State>();
         }
 
-        internal List<IShip> CreateFlotilla()
+        public bool PutShip(Placement placement)
         {
-            List<IShip> flotilla = new List<IShip>(5);
-            foreach (int ship in shipSizes)
-            {
-                flotilla.Add(new Ship(ship));
-            }
-            return flotilla;
-        }
-        internal bool SetUpComplete()
-        {
-            List<int> shipCheckList = new List<int>(shipSizes.Length);
+            if (!(placement.Ship is Ship))
+                  throw new ArgumentException("Объект не является кораблем", "placement");
 
-            foreach (KeyValuePair<Player, List<Placement>> pair in _playerShips)
-            {
-                if (pair.Value.Count != shipSizes.Length)
-                    return false;
-
-                shipCheckList.AddRange(shipSizes);
-
-                foreach (Placement placedShip in pair.Value)
-                {
-                    shipCheckList.Remove(placedShip.Ship.Length);
-                }
-
-                if (shipCheckList.Count != 0)
-                    return false;
-            }
-
+              return this.PlacePlayerShip(player, placement);
+             
             return true;
         }
-        internal bool IsAnyPlayerDead()
-        {
-            int shipCount;
-            foreach (KeyValuePair<Player, List<Placement>> pair in _playerShips)
-            {
-                shipCount = 0;
-                foreach (Placement placement in pair.Value)
-                {
-                    if (!((Ship)placement.Ship).IsSunk)
-                        shipCount++;
-                }
 
-                if (shipCount == 0)
+        internal bool PlacePlayerShip(Player player, Placement placement)
+        {
+            return true;
+        }
+
+        public bool IsSelectedCell(Coordinate placement)
+        {
+           Rectangle mouse = new Rectangle(placement.X, placement.Y,1,1);
+
+            foreach (var cell in cellList)
+            {
+                if (cell.Key.Intersects(mouse) && cell.Value==State.LIVE)
                     return true;
+         
             }
             return false;
-        }
-        internal bool PlacePlayerShip(Player _player, Placement placement)
-        {
-            if (_gameStarted)
-                throw new Exception(String.Format("Player {0} tried to place a ship after the game started. Bad player.", _player));
 
-            List<Placement> playerFleet = _playerShips[_player];
-
-            if (IsLegalBoardPlacement(placement))
-            {
-                foreach (Placement placedShip in playerFleet)
-                {
-                    if (IsInTheWayOf(placedShip, placement))
-                        return false;
-                }
-            }
-            else
-                return false;
-
-            playerFleet.Add(placement);
-            return true;
         }
 
-        private bool IsLegalBoardPlacement(Placement placement)
-        {
-            Coordinate start, end, boardTopLeft, boardBottomRight;
-
-            start = new Coordinate(placement);
-            end = ShipEndPoint(placement);
-
-            boardTopLeft = new Coordinate(1, YMax);
-            boardBottomRight = new Coordinate(XMax, 1);
-
-            if (CoordinateInSquare(start, boardTopLeft, boardBottomRight) &&
-                CoordinateInSquare(end, boardTopLeft, boardBottomRight))
-                return true;
-
-            return false;
-        }
         private bool IsInTheWayOf(Placement placedShip, Placement placement)
         {
             Coordinate shipTopLeft, shipBottomRight, endPoint, tmpSegment;
@@ -210,5 +105,75 @@ namespace BattleField
 
             return false;
         }
+
+        internal bool SetUpComplete()
+        {
+          /*  List<int> shipCheckList = new List<int>(_shipSizes.Length);
+
+            foreach (KeyValuePair<Player, List<Placement>> pair in _playerShips)
+            {
+                if (pair.Value.Count != _shipSizes.Length)
+                    return false;
+
+                shipCheckList.AddRange(_shipSizes);
+
+                foreach (Placement placedShip in pair.Value)
+                {
+                    shipCheckList.Remove(placedShip.Vessel.Length);
+                }
+
+                if (shipCheckList.Count != 0)
+                    return false;
+            }*/
+
+            return true;
+        }
+
+        internal ShotFeedback FireShot(Player whosTurn, Shot playerShot)
+        {
+            /*List<Placement> targetFleet = _playerShips[whosTurn == Player.One ? Player.Two : Player.One];
+            Vessel ship;
+            int start, end, shot, segment;
+            int hits = 0;
+            int sunkShips = 0;
+
+            foreach (Placement shipPlacement in targetFleet)
+            {
+                ship = (Vessel)shipPlacement.Vessel;
+
+                if (shipPlacement.Orientation == Orientation.Horizontal && shipPlacement.Y == playerShot.Y)
+                {
+                    start = shipPlacement.X;
+                    end = shipPlacement.X + (ship.Length - 1);
+                    shot = playerShot.X;
+                }
+                else if (shipPlacement.Orientation == Orientation.Vertical && shipPlacement.X == playerShot.X)
+                {
+                    start = shipPlacement.Y - (ship.Length - 1);  // TODO: This should be taken care of.
+                    end = shipPlacement.Y;
+                    shot = playerShot.Y;
+                }
+                else
+                    continue;
+
+                segment = shot - start;
+
+                if (segment < ship.Length && segment >= 0)
+                {
+                    ship.Hit(segment);
+                    hits++;
+
+                    if (ship.IsSunk)
+                        sunkShips++;
+                }
+
+            }
+            */
+            return null; //new ShotFeedback(hits, sunkShips);
+        }
+
+
     }
+
+
 }

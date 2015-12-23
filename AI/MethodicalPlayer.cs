@@ -9,76 +9,19 @@ namespace AI
 {
     public class MethodicalPlayer : IPlayer
     {
-        private Coordinate _nextShot = new Coordinate(1, 1);
-
-        #region IPlayer implementation
-
-        public string Name
+        public void PlaceShips(ICollection<IShip> ships)
         {
-            get { return "MethodicalPlayer"; }
+            throw new NotImplementedException();
         }
 
-        public void PlaceShips(IPlayerView playerView, ICollection<IShip> ships)
+        public IShot YourTurn(IPlayer player)
         {
-            /* This AI places ships in the upper right corner and to the left.
-             * 
-             * E.g.
-             * 
-             * 10  #   #   #   #   #
-             * 9   #   #   #   #   #
-             * 8       #   #   #   #
-             * 7               #   #
-             * 6                   #
-             * 5
-             * 4
-             * 3
-             * 2
-             * 1
-             *   1 2 3 4 5 6 7 8 9 10
-             */
-
-            Placement place;
-            Coordinate coord;
-            int xMax = playerView.GetXMax();
-            int yMax = playerView.GetYMax();
-
-            int i = 0;
-            foreach (Ship ship in ships)
-            {
-                coord = new Coordinate(xMax - (2 * i), yMax);
-                place = new Placement(ship, coord, Orientation.Vertical);
-                playerView.PutShip(place);
-
-                i++;
-            }
+            throw new NotImplementedException();
         }
 
         public void ShotFeedback(int hits, int sunkShips)
         {
-            // Haha!! I don't care if I hit or miss. :D
+            throw new NotImplementedException();
         }
-
-        public IShot YourTurn(IPlayerView playerView)
-        {
-            int xMax = playerView.GetXMax();
-            int yMax = playerView.GetYMax();
-
-            Shot fireZeMissles = new Shot(_nextShot.X, _nextShot.Y);
-
-            _nextShot.X++;
-
-            if (_nextShot.X > xMax)
-            {
-                _nextShot.Y++;
-                _nextShot.X = 1;
-            }
-
-            if (_nextShot.Y > yMax)
-                _nextShot.Y = 1;
-
-            return (IShot)fireZeMissles;
-        }
-
-        #endregion
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using BattleField;
 using Microsoft.Xna.Framework.Input;
-using seafight;
+
 
 namespace Multiplayer
 {
